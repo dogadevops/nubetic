@@ -1,0 +1,68 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = await import(`../i18n/${lang}.json`);
+const translations = t.default;
+---
+
+<footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+  <div class="container mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <svg class="w-8 h-8 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+          </svg>
+          <span class="text-2xl font-bold">Nubetic</span>
+        </div>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">
+          {translations.footer.description}
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-4">{translations.footer.product}</h3>
+        <ul class="space-y-3">
+          <li><a href="#features" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.features}</a></li>
+          <li><a href="#pricing" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.pricing}</a></li>
+          <li><a href="#security" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.security}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-4">{translations.footer.company}</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.about}</a></li>
+          <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.careers}</a></li>
+          <li><a href="#blog" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.blog}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-4">{translations.footer.support}</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.help}</a></li>
+          <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.docs}</a></li>
+          <li><a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.status}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-600 dark:text-gray-400 text-sm">
+        © {new Date().getFullYear()} Nubetic. {translations.footer.rights}
+      </p>
+      <div class="flex gap-6">
+        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm">{translations.footer.links.privacy}</a>
+        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm">{translations.footer.links.terms}</a>
+        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm">{translations.footer.links.cookies}</a>
+      </div>
+      <p class="text-gray-500 dark:text-gray-500 text-sm">
+        {translations.footer.tagline}
+      </p>
+    </div>
+  </div>
+</footer>

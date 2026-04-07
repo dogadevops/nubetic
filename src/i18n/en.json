@@ -1,0 +1,176 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "☁️ Next-generation cloud storage",
+    "title1": "Your files",
+    "title2": "always with you",
+    "description": "Store, share and collaborate with enterprise-grade security. Access your data from anywhere in the world with the speed you deserve.",
+    "ctaPrimary": "Get started free",
+    "ctaSecondary": "Watch demo",
+    "stats": {
+      "users": "Active users",
+      "uptime": "Uptime",
+      "countries": "Countries"
+    }
+  },
+  "features": {
+    "badge": "✨ Features",
+    "title": "Everything you need in one place",
+    "description": "Powerful tools designed for modern teams seeking productivity and security.",
+    "items": {
+      "security": {
+        "title": "Advanced Security",
+        "description": "End-to-end encryption with two-factor authentication to protect your data."
+      },
+      "speed": {
+        "title": "Ultra Fast Speed",
+        "description": "Global CDN with servers in over 50 locations for instant access."
+      },
+      "collaboration": {
+        "title": "Real-time Collaboration",
+        "description": "Work simultaneously with your team on shared documents and files."
+      },
+      "backup": {
+        "title": "Automatic Backup",
+        "description": "Automatic hourly backups with 90-day retention."
+      },
+      "integration": {
+        "title": "Integrations",
+        "description": "Connect with over 200 applications including Slack, Notion and Google Workspace."
+      },
+      "analytics": {
+        "title": "Detailed Analytics",
+        "description": "Complete dashboard with usage, storage and team activity metrics."
+      }
+    }
+  },
+  "pricing": {
+    "badge": "💰 Pricing",
+    "title": "Plans for every need",
+    "description": "Start free and scale as you grow. No commitments.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "saveLabel": "Save 20%",
+    "popular": "Most popular",
+    "getStarted": "Get started now",
+    "contactSales": "Contact sales",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "0",
+        "description": "Perfect for personal use",
+        "features": [
+          "5 GB storage",
+          "1 user",
+          "Web and mobile access",
+          "Email support",
+          "Basic encryption"
+        ]
+      },
+      "pro": {
+        "name": "Professional",
+        "price": "12",
+        "description": "Ideal for professionals and small teams",
+        "features": [
+          "500 GB storage",
+          "Up to 10 users",
+          "All platforms",
+          "24/7 priority support",
+          "Advanced encryption",
+          "Real-time collaboration",
+          "File versions (30 days)",
+          "Basic integrations"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "49",
+        "description": "For organizations that need more",
+        "features": [
+          "Unlimited storage",
+          "Unlimited users",
+          "All platforms",
+          "Dedicated 24/7 support",
+          "Military-grade encryption",
+          "Advanced collaboration",
+          "Unlimited versions",
+          "All integrations",
+          "Custom API",
+          "99.99% guaranteed SLA",
+          "Advanced administration"
+        ]
+      }
+    }
+  },
+  "testimonials": {
+    "badge": "💬 Testimonials",
+    "title": "What our clients say",
+    "items": {
+      "1": {
+        "name": "Maria Gonzalez",
+        "role": "CTO at TechStart",
+        "text": "Nubetic completely transformed the way we work. The speed and security are unmatched."
+      },
+      "2": {
+        "name": "Carlos Rodriguez",
+        "role": "IT Director at GlobalCorp",
+        "text": "We migrated 50TB without any issues. The technical support is exceptional and always available."
+      },
+      "3": {
+        "name": "Ana Martinez",
+        "role": "Freelancer",
+        "text": "As a designer, I need fast access to large files. Nubetic gives me exactly that and more."
+      }
+    }
+  },
+  "blog": {
+    "badge": "📝 Blog",
+    "title": "Latest updates",
+    "description": "Stay up to date with the latest news and tutorials.",
+    "readMore": "Read more"
+  },
+  "contact": {
+    "badge": "📧 Contact",
+    "title": "Ready to get started?",
+    "description": "Send us a message and we'll respond within 24 hours.",
+    "name": "Full name",
+    "email": "Email address",
+    "message": "Your message",
+    "submit": "Send message",
+    "success": "Message sent successfully!",
+    "error": "There was an error sending the message."
+  },
+  "footer": {
+    "description": "Secure, fast and reliable cloud storage for modern teams.",
+    "product": "Product",
+    "company": "Company",
+    "support": "Support",
+    "legal": "Legal",
+    "links": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "security": "Security",
+      "about": "About us",
+      "careers": "Careers",
+      "blog": "Blog",
+      "help": "Help center",
+      "docs": "Documentation",
+      "status": "Service status",
+      "privacy": "Privacy",
+      "terms": "Terms of service",
+      "cookies": "Cookie policy"
+    },
+    "rights": "All rights reserved.",
+    "tagline": "Made with ❤️ for teams worldwide"
+  },
+  "whatsapp": {
+    "message": "Hi! I'm interested in learning more about Nubetic."
+  }
+}
