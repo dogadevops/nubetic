@@ -1,0 +1,176 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "features": "Características",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "getStarted": "Comenzar"
+  },
+  "hero": {
+    "badge": "☁️ Almacenamiento en la nube de nueva generación",
+    "title1": "Tus archivos",
+    "title2": "siempre contigo",
+    "description": "Almacena, comparte y colabora con seguridad de nivel empresarial. Accede a tus datos desde cualquier lugar del mundo con la velocidad que mereces.",
+    "ctaPrimary": "Comenzar gratis",
+    "ctaSecondary": "Ver demo",
+    "stats": {
+      "users": "Usuarios activos",
+      "uptime": "Tiempo activo",
+      "countries": "Países"
+    }
+  },
+  "features": {
+    "badge": "✨ Características",
+    "title": "Todo lo que necesitas en un solo lugar",
+    "description": "Herramientas poderosas diseñadas para equipos modernos que buscan productividad y seguridad.",
+    "items": {
+      "security": {
+        "title": "Seguridad Avanzada",
+        "description": "Cifrado de extremo a extremo con autenticación de dos factores para proteger tus datos."
+      },
+      "speed": {
+        "title": "Velocidad Ultra Rápida",
+        "description": "CDN global con servidores en más de 50 ubicaciones para acceso instantáneo."
+      },
+      "collaboration": {
+        "title": "Colaboración en Tiempo Real",
+        "description": "Trabaja simultáneamente con tu equipo en documentos y archivos compartidos."
+      },
+      "backup": {
+        "title": "Backup Automático",
+        "description": "Copias de seguridad automáticas cada hora con retención de 90 días."
+      },
+      "integration": {
+        "title": "Integraciones",
+        "description": "Conecta con más de 200 aplicaciones incluyendo Slack, Notion y Google Workspace."
+      },
+      "analytics": {
+        "title": "Analíticas Detalladas",
+        "description": "Dashboard completo con métricas de uso, almacenamiento y actividad del equipo."
+      }
+    }
+  },
+  "pricing": {
+    "badge": "💰 Precios",
+    "title": "Planes para cada necesidad",
+    "description": "Comienza gratis y escala según tu crecimiento. Sin compromisos.",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "saveLabel": "Ahorra 20%",
+    "popular": "Más popular",
+    "getStarted": "Comenzar ahora",
+    "contactSales": "Contactar ventas",
+    "plans": {
+      "free": {
+        "name": "Gratuito",
+        "price": "0",
+        "description": "Perfecto para uso personal",
+        "features": [
+          "5 GB de almacenamiento",
+          "1 usuario",
+          "Acceso web y móvil",
+          "Soporte por email",
+          "Cifrado básico"
+        ]
+      },
+      "pro": {
+        "name": "Profesional",
+        "price": "12",
+        "description": "Ideal para profesionales y equipos pequeños",
+        "features": [
+          "500 GB de almacenamiento",
+          "Hasta 10 usuarios",
+          "Todas las plataformas",
+          "Soporte prioritario 24/7",
+          "Cifrado avanzado",
+          "Colaboración en tiempo real",
+          "Versiones de archivos (30 días)",
+          "Integraciones básicas"
+        ]
+      },
+      "enterprise": {
+        "name": "Empresarial",
+        "price": "49",
+        "description": "Para organizaciones que necesitan más",
+        "features": [
+          "Almacenamiento ilimitado",
+          "Usuarios ilimitados",
+          "Todas las plataformas",
+          "Soporte dedicado 24/7",
+          "Cifrado de nivel militar",
+          "Colaboración avanzada",
+          "Versiones ilimitadas",
+          "Todas las integraciones",
+          "API personalizada",
+          "SLA garantizado 99.99%",
+          "Administración avanzada"
+        ]
+      }
+    }
+  },
+  "testimonials": {
+    "badge": "💬 Testimonios",
+    "title": "Lo que dicen nuestros clientes",
+    "items": {
+      "1": {
+        "name": "María González",
+        "role": "CTO en TechStart",
+        "text": "Nubetic transformó completamente nuestra forma de trabajar. La velocidad y seguridad son incomparables."
+      },
+      "2": {
+        "name": "Carlos Rodríguez",
+        "role": "Director de IT en GlobalCorp",
+        "text": "Migramos 50TB sin ningún problema. El soporte técnico es excepcional y siempre están disponibles."
+      },
+      "3": {
+        "name": "Ana Martínez",
+        "role": "Freelancer",
+        "text": "Como diseñadora, necesito acceso rápido a archivos pesados. Nubetic me da exactamente eso y más."
+      }
+    }
+  },
+  "blog": {
+    "badge": "📝 Blog",
+    "title": "Últimas novedades",
+    "description": "Mantente al día con las últimas noticias y tutoriales.",
+    "readMore": "Leer más"
+  },
+  "contact": {
+    "badge": "📧 Contacto",
+    "title": "¿Listo para comenzar?",
+    "description": "Envíanos un mensaje y te responderemos en menos de 24 horas.",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "message": "Tu mensaje",
+    "submit": "Enviar mensaje",
+    "success": "¡Mensaje enviado correctamente!",
+    "error": "Hubo un error al enviar el mensaje."
+  },
+  "footer": {
+    "description": "Almacenamiento en la nube seguro, rápido y confiable para equipos modernos.",
+    "product": "Producto",
+    "company": "Empresa",
+    "support": "Soporte",
+    "legal": "Legal",
+    "links": {
+      "features": "Características",
+      "pricing": "Precios",
+      "security": "Seguridad",
+      "about": "Sobre nosotros",
+      "careers": "Carreras",
+      "blog": "Blog",
+      "help": "Centro de ayuda",
+      "docs": "Documentación",
+      "status": "Estado del servicio",
+      "privacy": "Privacidad",
+      "terms": "Términos de servicio",
+      "cookies": "Política de cookies"
+    },
+    "rights": "Todos los derechos reservados.",
+    "tagline": "Hecho con ❤️ para equipos de todo el mundo"
+  },
+  "whatsapp": {
+    "message": "¡Hola! Me interesa conocer más sobre Nubetic."
+  }
+}
