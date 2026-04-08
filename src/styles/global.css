@@ -39,7 +39,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -48,11 +49,14 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.8), 0 0 40px rgba(217, 70, 239, 0.4);
+    box-shadow:
+      0 0 20px rgba(14, 165, 233, 0.8),
+      0 0 40px rgba(217, 70, 239, 0.4);
   }
 }
 
@@ -72,7 +76,9 @@
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
 }
 
 .reveal.visible {
