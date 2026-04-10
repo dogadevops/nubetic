@@ -22,8 +22,8 @@
   },
   "features": {
     "badge": "✨ Características",
-    "title": "Todo lo que necesitas en un solo lugar",
-    "description": "Herramientas poderosas diseñadas para equipos modernos que buscan productividad y seguridad.",
+    "title": "Sincronización segura y ultraveloz en todos sus dispositivos.",
+    "description": "Potenciamos su flujo de trabajo con Nextcloud, el ecosistema líder en almacenamiento y copias de seguridad.",
     "items": {
       "security": {
         "title": "Seguridad Avanzada",
@@ -43,7 +43,13 @@
       },
       "integration": {
         "title": "Integraciones",
-        "description": "Conecta con más de 200 aplicaciones incluyendo Slack, Notion y Google Workspace."
+        "description": [
+          "Dropbox",
+          "Google Drive",
+          "Microsoft OneDrive",
+          "Facebook",
+          "Google Photos"
+        ]
       },
       "analytics": {
         "title": "Analíticas Detalladas",
@@ -53,8 +59,8 @@
   },
   "pricing": {
     "badge": "💰 Precios",
-    "title": "Planes para cada necesidad",
-    "description": "Comienza gratis y escala según tu crecimiento. Sin compromisos.",
+    "title": "SU INFORMACIÓN SIEMPRE BAJO SU CONTROL",
+    "description": "A diferencia de las nubes públicas tradicionales, Nextcloud le otorga soberanía absoluta sobre sus datos. Usted decide dónde se almacenan y quién accede a ellos, bajo un entorno de cifrado de extremo a extremo. Mantenga su cumplimiento normativo sin sacrificar la agilidad, garantizando que su propiedad intelectual nunca salga de su infraestructura.",
     "monthly": "Mensual",
     "yearly": "Anual",
     "saveLabel": "Ahorra 20%",
@@ -111,7 +117,7 @@
   },
   "testimonials": {
     "badge": "💬 Testimonios",
-    "title": "Lo que dicen nuestros clientes",
+    "title": "NEXTCLOUD HUB",
     "items": {
       "1": {
         "name": "María González",

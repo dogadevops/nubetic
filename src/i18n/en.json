@@ -41,9 +41,15 @@
         "title": "Automatic Backup",
         "description": "Automatic hourly backups with 90-day retention."
       },
-      "integration": {
+       "integration": {
         "title": "Integrations",
-        "description": "Connect with over 200 applications including Slack, Notion and Google Workspace."
+        "description": [
+          "Dropbox",
+          "Google Drive",
+          "Microsoft OneDrive",
+          "Facebook",
+          "Google Photos"
+        ]
       },
       "analytics": {
         "title": "Detailed Analytics",
