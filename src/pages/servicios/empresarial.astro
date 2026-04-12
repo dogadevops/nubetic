@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import AIChatbot from '../../components/AIChatbot.astro';
+
+const lang = 'es';
+
+const planData = {
+  title: "Empresarial",
+  features: [
+    "Servidor Dedicado con IP Real",
+    "Administradores, grupos y usuarios ilimitados",
+    "Desde 1 TB hasta 24 TB de Almacenamiento",
+    "Tráfico ilimitado",
+    "Dispositivos ilimitados",
+    "Personalización al 100%",
+    "Sistema de conferencia sin límite de usuarios y tiempo",
+    "365 días de historial de papelera de reciclaje",
+    "Todas las aplicaciones del entorno Nextcloud",
+    "Soporte de primer nivel 24/7 con IA Backup24-7",
+    "Soporte personalizado con operador especializado"
+  ],
+  capacities: ["1 TB", "2 TB", "4 TB", "8 TB", "16 TB", "24 TB"],
+  pricesMonthly: [91, 135, 210, 295, 385, 455],
+  pricesYearly: [1015, 1250, 1850, 2600, 3200, 3699],
+  precioXTBMensual: [91.00, 67.50, 52.50, 36.88, 24.06, 18.96],
+  perMonth: "/ mes",
+  perYear: "/ año"
+};
+---
+
+<Layout title="Nubetic - Empresarial" description="Plan Empresarial - Servidor dedicado para empresas en crecimiento." lang={lang}>
+  <Header lang={lang} />
+  
+  <main>
+    <section class="pt-32 pb-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ProductCard lang={lang} plan={planData} color="indigo" />
+      </div>
+    </section>
+  </main>
+  
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} phoneNumber="+1234567890" />
+  <AIChatbot lang={lang} />
+</Layout>
+
+<script>
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>

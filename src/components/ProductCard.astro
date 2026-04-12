@@ -1,0 +1,267 @@
+---
+interface PlanData {
+  title: string;
+  features: string[];
+  capacities: string[];
+  pricesMonthly: number[];
+  pricesYearly: number[];
+  precioXTBMensual?: number[];
+  perMonth: string;
+  perYear: string;
+}
+
+interface Props {
+  lang?: string;
+  plan: PlanData;
+  color?: 'blue' | 'purple' | 'indigo' | 'violet';
+}
+
+const { lang = 'es', plan, color = 'blue' } = Astro.props;
+
+const colorClasses = {
+  blue: {
+    gradient: "from-blue-600 to-blue-800",
+    button: "bg-blue-600 hover:bg-blue-700",
+    accent: "text-blue-600 dark:text-blue-400",
+    border: "border-blue-200 dark:border-blue-800"
+  },
+  purple: {
+    gradient: "from-purple-600 to-purple-800",
+    button: "bg-purple-600 hover:bg-purple-700",
+    accent: "text-purple-600 dark:text-purple-400",
+    border: "border-purple-200 dark:border-purple-800"
+  },
+  indigo: {
+    gradient: "from-indigo-600 to-indigo-800",
+    button: "bg-indigo-600 hover:bg-indigo-700",
+    accent: "text-indigo-600 dark:text-indigo-400",
+    border: "border-indigo-200 dark:border-indigo-800"
+  },
+  violet: {
+    gradient: "from-violet-600 to-violet-800",
+    button: "bg-violet-600 hover:bg-violet-700",
+    accent: "text-violet-600 dark:text-violet-400",
+    border: "border-violet-200 dark:border-violet-800"
+  }
+};
+
+const colors = colorClasses[color];
+---
+
+<!-- CTA Product Section -->
+<div class="reveal bg-gray-50 dark:bg-gray-900 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16">
+  <div class="mx-auto max-w-5xl bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 sm:p-8 lg:p-10">
+    
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <!-- Product Image -->
+      <div class="relative reveal">
+        <div class={`aspect-[5/6] rounded-xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center overflow-hidden shadow-lg`}>
+          <div class="text-center text-white p-6">
+            <svg class="w-24 h-24 mx-auto mb-4 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+            </svg>
+            <span class="text-2xl sm:text-3xl font-bold">{plan.capacities[0]} Cloud</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="reveal">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wide">
+          {plan.title}
+        </h2>
+        
+        <ul class="text-sm space-y-2 mb-6 text-gray-600 dark:text-gray-400 leading-relaxed">
+          {plan.features.map(feature => (
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+
+        <!-- Selectors -->
+        <div class="space-y-4 mb-6">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+              {lang === 'es' ? 'Planes' : 'Plans'}
+            </label>
+            <select id="plan-select" class="w-full border border-gray-200 dark:border-gray-600 p-3 text-sm bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg transition-all cursor-pointer">
+              <option value="monthly">{lang === 'es' ? 'Mensual' : 'Monthly'}</option>
+              <option value="yearly">{lang === 'es' ? 'Anual' : 'Yearly'}</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+              {lang === 'es' ? 'Capacidad' : 'Capacity'}
+            </label>
+            <select id="capacity-select" class="w-full border border-gray-200 dark:border-gray-600 p-3 text-sm bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg transition-all cursor-pointer">
+              {plan.capacities.map(cap => (
+                <option value={cap}>{cap}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-6">
+          <span 
+            id="product-price" 
+            class="text-3xl font-bold text-gray-800 dark:text-white"
+            data-prices-monthly={JSON.stringify(plan.pricesMonthly)}
+            data-prices-yearly={JSON.stringify(plan.pricesYearly)}
+            data-per-month={plan.perMonth}
+            data-per-year={plan.perYear}
+            data-initial-index="0"
+          >
+            $--
+          </span>
+        </div>
+
+        <!-- Buy Button -->
+        <button class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-sm transition-all shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+          {lang === 'es' ? 'Comprar ahora' : 'Buy now'}
+        </button>
+
+        <!-- Info -->
+        <div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500 space-y-1">
+          <p>SKU: N/D</p>
+          <p>{lang === 'es' ? 'Categoría: Planes' : 'Category: Plans'}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Info Table -->
+    <div class="mt-12 reveal">
+      <h3 class="border-t-2 border-blue-600 inline-block pt-3 font-bold text-sm mb-6 text-gray-800 dark:text-white uppercase">
+        {lang === 'es' ? 'Información adicional' : 'Additional Information'}
+      </h3>
+      <table class="w-full border-collapse border border-gray-200 dark:border-gray-600 text-sm rounded-lg overflow-hidden">
+        <tbody>
+          <tr class="bg-gray-50 dark:bg-gray-700/50">
+            <td class="border border-gray-200 dark:border-gray-600 p-4 font-semibold text-gray-700 dark:text-gray-300 w-1/3">
+              {lang === 'es' ? 'Planes' : 'Plans'}
+            </td>
+            <td class="border border-gray-200 dark:border-gray-600 p-4 italic text-gray-600 dark:text-gray-400">
+              {lang === 'es' ? 'Mensual, 12 Meses' : 'Monthly, 12 Months'}
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-200 dark:border-gray-600 p-4 font-semibold text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50">
+              {lang === 'es' ? 'Capacidad' : 'Capacity'}
+            </td>
+            <td class="border border-gray-200 dark:border-gray-600 p-4 italic text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50">
+              {plan.capacities.join(', ')}
+            </td>
+          </tr>
+          {plan.precioXTBMensual && (
+          <tr>
+            <td class="border border-gray-200 dark:border-gray-600 p-4 font-semibold text-gray-700 dark:text-gray-300">
+              {lang === 'es' ? 'Precio x TB (Mensual)' : 'Price x TB (Monthly)'}
+            </td>
+            <td 
+              class="border border-gray-200 dark:border-gray-600 p-4 italic text-gray-600 dark:text-gray-400"
+              id="precio-x-tb"
+              data-precio-xtb={JSON.stringify(plan.precioXTBMensual)}
+            >
+              ${plan.precioXTBMensual[0]}
+            </td>
+          </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var planSelect = document.getElementById('plan-select');
+  var capacitySelect = document.getElementById('capacity-select');
+  var priceDisplay = document.getElementById('product-price');
+  var precioXTBDisplay = document.getElementById('precio-x-tb');
+  var currentTrwq = 1;
+
+  // API Key for public read (same key, but minimal security for GET)
+  var API_KEY = 'NubeticAdmin2024_SecureKey_abc123xyz789';
+  
+  function getAuthHeader() {
+    return 'Bearer ' + API_KEY;
+  }
+
+  // Fetch TRWQ from API
+  async function loadTrwq() {
+    try {
+      var response = await fetch('/api/trwq', {
+        headers: {
+          'Authorization': getAuthHeader()
+        }
+      });
+      
+      if (response.status === 401) {
+        console.error('Unauthorized - Invalid API Key');
+        currentTrwq = 1;
+        return;
+      }
+      
+      var data = await response.json();
+      currentTrwq = data.trwq || 1;
+      console.log('TRWQ from API:', currentTrwq);
+    } catch (e) {
+      console.error('Error loading TRWQ:', e);
+      currentTrwq = 1;
+    }
+  }
+
+  function updatePrice() {
+    if (!priceDisplay) return;
+
+    var pricesMonthly = JSON.parse(priceDisplay.dataset.pricesMonthly || '[]');
+    var pricesYearly = JSON.parse(priceDisplay.dataset.pricesYearly || '[]');
+    var perMonth = priceDisplay.dataset.perMonth || '/ mes';
+    var perYear = priceDisplay.dataset.perYear || '/ año';
+
+    var trwq = currentTrwq;
+    console.log('TRWQ:', trwq);
+    
+    var capacityIndex = capacitySelect ? capacitySelect.selectedIndex : 0;
+    if (priceDisplay.dataset.initialIndex && capacityIndex === 0) {
+      capacityIndex = parseInt(priceDisplay.dataset.initialIndex);
+    }
+    
+    var isYearly = planSelect && planSelect.value === 'yearly';
+
+    var prices = isYearly ? pricesYearly : pricesMonthly;
+    var suffix = isYearly ? perYear : perMonth;
+    var basePrice = prices[capacityIndex] || 0;
+    var finalPrice = basePrice * trwq;
+
+    priceDisplay.textContent = '$' + finalPrice.toFixed(2) + suffix;
+
+    // Update precio x TB
+    if (precioXTBDisplay && precioXTBDisplay.dataset.precioXtb) {
+      var preciosXTB = JSON.parse(precioXTBDisplay.dataset.precioXtb);
+      var basePrecioXTB = preciosXTB[capacityIndex] || 0;
+      var finalPrecioXTB = basePrecioXTB * trwq;
+      precioXTBDisplay.textContent = '$' + finalPrecioXTB.toFixed(2);
+    }
+  }
+
+  loadTrwq().then(function() {
+    updatePrice();
+    if (planSelect) planSelect.addEventListener('change', updatePrice);
+    if (capacitySelect) capacitySelect.addEventListener('change', updatePrice);
+    
+    // Check for TRWQ changes periodically
+    setInterval(function() {
+      loadTrwq().then(function() {
+        updatePrice();
+      });
+    }, 5000);
+  });
+});
+</script>

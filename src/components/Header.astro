@@ -1,14 +1,32 @@
 ---
 const currentLocale = Astro.url.pathname.startsWith('/en/') ? 'en' : 'es';
+const pathname = Astro.url.pathname;
+
+// Detectar si estamos en una página específica
+const isNosotrosPage = pathname.includes('/nosotros');
+const isServiciosPage = pathname.includes('/servicios');
+
+// Construir el href del idioma dinámicamente
+const localeHref = (() => {
+  if (currentLocale === 'en') {
+    return isNosotrosPage ? '/nosotros' : isServiciosPage ? '/servicios' : '/';
+  } else {
+    return isNosotrosPage ? '/en/nosotros' : isServiciosPage ? '/en/servicios' : '/en/';
+  }
+})();
 
 const navLinks = {
   es: [
+    { label: 'Nosotros', href: '/nosotros' },
+    { label: 'Servicios', href: '/servicios' },
     { label: 'Características', href: '#features' },
     { label: 'Precios', href: '#pricing' },
     { label: 'Blog', href: '#blog' },
     { label: 'Contacto', href: '#contact' },
   ],
   en: [
+    { label: 'About', href: '/en/nosotros' },
+    { label: 'Services', href: '/en/servicios' },
     { label: 'Features', href: '#features' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'Blog', href: '#blog' },
@@ -17,7 +35,6 @@ const navLinks = {
 };
 
 const links = navLinks[currentLocale];
-const localeHref = currentLocale === 'en' ? '/es/' : '/en/';
 const localeLabel = currentLocale === 'en' ? 'ES' : 'EN';
 ---
 
@@ -136,14 +153,15 @@ const localeLabel = currentLocale === 'en' ? 'ES' : 'EN';
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-gray-200 px-4 py-4 md:hidden dark:border-gray-700"
+    class="mobile-menu border-t border-gray-200 px-4 py-4 md:hidden dark:border-gray-700 overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out"
   >
     <ul class="flex flex-col gap-4">
-      {links.map((link) => (
-        <li>
+      {links.map((link, index) => (
+        <li class="mobile-menu-item" style={`--delay: ${index * 50}ms`}>
           <a
             href={link.href}
-            class="block text-base font-medium text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+            class="block text-base font-medium text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 translate-y-2 opacity-0 transition-all duration-300"
+            style={`transition-delay: ${index * 50}ms`}
           >
             {link.label}
           </a>
@@ -227,18 +245,41 @@ const localeLabel = currentLocale === 'en' ? 'ES' : 'EN';
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIconOpen = document.getElementById('menu-icon-open');
   const menuIconClose = document.getElementById('menu-icon-close');
+  const menuItems = mobileMenu?.querySelectorAll('.mobile-menu-item a');
 
   mobileMenuBtn?.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('hidden');
-    menuIconOpen.classList.toggle('hidden', !isOpen);
-    menuIconClose.classList.toggle('hidden', isOpen);
+    const isOpen = mobileMenu.classList.contains('mobile-menu-open');
+    
+    if (isOpen) {
+      // Cerrar con animación reversa
+      mobileMenu.classList.remove('mobile-menu-open');
+      mobileMenu.style.maxHeight = '0';
+      mobileMenu.style.opacity = '0';
+      menuItems?.forEach((item) => {
+        item.classList.add('translate-y-2', 'opacity-0');
+      });
+    } else {
+      // Abrir con animación
+      mobileMenu.classList.add('mobile-menu-open');
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      mobileMenu.style.opacity = '1';
+      // Animar cada item con delay escalonado
+      menuItems?.forEach((item) => {
+        item.classList.remove('translate-y-2', 'opacity-0');
+      });
+    }
+    
+    menuIconOpen.classList.toggle('hidden', isOpen);
+    menuIconClose.classList.toggle('hidden', !isOpen);
     mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
   });
 
   // Close mobile menu when clicking a link
   mobileMenu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('mobile-menu-open');
+      mobileMenu.style.maxHeight = '0';
+      mobileMenu.style.opacity = '0';
       menuIconOpen.classList.remove('hidden');
       menuIconClose.classList.add('hidden');
       mobileMenuBtn.setAttribute('aria-expanded', 'false');

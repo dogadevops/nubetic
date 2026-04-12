@@ -1,0 +1,148 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const translations = {
+  es: {
+    badge: "👥 Nosotros",
+    title: "Conocé al equipo detrás de Nubetic",
+    description: "Somos un equipo apasionado por la tecnología y la innovación, comprometidos con brindarte las mejores soluciones de almacenamiento en la nube.",
+    missionTitle: "Nuestra Misión",
+    missionText: "Democratizar el acceso a soluciones de almacenamiento en la nube seguras y accesibles para empresas y individuos de todo el mundo.",
+    visionTitle: "Nuestra Visión",
+    visionText: "Ser la plataforma de referencia en gestión de datos en la nube, pionera en seguridad, velocidad y facilidad de uso.",
+    valuesTitle: "Nuestros Valores",
+    values: [
+      { title: "Innovación", text: "Constantemente buscamos nuevas formas de mejorar y evolucionar." },
+      { title: "Transparencia", text: "Operamos con honestidad y claridad en todo lo que hacemos." },
+      { title: "Seguridad", text: "La protección de tus datos es nuestra máxima prioridad." },
+      { title: "Accesibilidad", text: "Creemos que la tecnología de calidad debe estar al alcance de todos." }
+    ],
+    teamTitle: "Nuestro Equipo",
+    teamIntro: "Profesionales dedicados a hacer realidad la nube del mañana.",
+    stats: [
+      { number: "10+", label: "Años de experiencia" },
+      { number: "50K+", label: "Clientes satisfechos" },
+      { number: "99.9%", label: "Uptime garantizado" },
+      { number: "24/7", label: "Soporte disponible" }
+    ]
+  },
+  en: {
+    badge: "👥 About Us",
+    title: "Meet the team behind Nubetic",
+    description: "We are a team passionate about technology and innovation, committed to providing you with the best cloud storage solutions.",
+    missionTitle: "Our Mission",
+    missionText: "To democratize access to secure and affordable cloud storage solutions for businesses and individuals worldwide.",
+    visionTitle: "Our Vision",
+    visionText: "To be the leading platform for cloud data management, pioneering in security, speed, and ease of use.",
+    valuesTitle: "Our Values",
+    values: [
+      { title: "Innovation", text: "We constantly seek new ways to improve and evolve." },
+      { title: "Transparency", text: "We operate with honesty and clarity in everything we do." },
+      { title: "Security", text: "Protecting your data is our top priority." },
+      { title: "Accessibility", text: "We believe quality technology should be accessible to everyone." }
+    ],
+    teamTitle: "Our Team",
+    teamIntro: "Professionals dedicated to making tomorrow's cloud a reality.",
+    stats: [
+      { number: "10+", label: "Years of experience" },
+      { number: "50K+", label: "Satisfied clients" },
+      { number: "99.9%", label: "Guaranteed uptime" },
+      { number: "24/7", label: "Support available" }
+    ]
+  }
+};
+
+const t = translations[lang];
+---
+
+<section class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 pt-32 pb-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Badge -->
+    <div class="mb-6 flex justify-center reveal">
+      <span class="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+        {t.badge}
+      </span>
+    </div>
+
+    <!-- Title & Description -->
+    <div class="mb-16 text-center reveal">
+      <h1 class="mb-6 text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl">
+        {t.title}
+      </h1>
+      <p class="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-300">
+        {t.description}
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="mb-20 grid grid-cols-2 gap-8 md:grid-cols-4 reveal">
+      {t.stats.map((stat) => (
+        <div class="text-center">
+          <div class="mb-2 text-4xl font-bold gradient-text">{stat.number}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="mb-20 grid gap-8 md:grid-cols-2 reveal">
+      <div class="rounded-2xl bg-white p-8 shadow-lg dark:bg-gray-800">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+          {t.missionTitle}
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          {t.missionText}
+        </p>
+      </div>
+      <div class="rounded-2xl bg-white p-8 shadow-lg dark:bg-gray-800">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+          {t.visionTitle}
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          {t.visionText}
+        </p>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="mb-20 reveal">
+      <h2 class="mb-10 text-center text-3xl font-bold text-gray-900 dark:text-white">
+        {t.valuesTitle}
+      </h2>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {t.values.map((value, index) => (
+          <div class="rounded-xl bg-white p-6 shadow-md dark:bg-gray-800 dark:shadow-gray-900/50">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-2xl dark:bg-blue-900/30">
+              {index === 0 && "💡"}
+              {index === 1 && "🔍"}
+              {index === 2 && "🔒"}
+              {index === 3 && "🌍"}
+            </div>
+            <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+              {value.title}
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              {value.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="text-center reveal">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
+        {t.teamTitle}
+      </h2>
+      <p class="mb-12 text-gray-600 dark:text-gray-400">
+        {t.teamIntro}
+      </p>
+    </div>
+
+  </div>
+</section>

@@ -31,6 +31,7 @@ const translations = t.default;
       <div>
         <h3 class="font-semibold text-gray-900 dark:text-white mb-4">{translations.footer.product}</h3>
         <ul class="space-y-3">
+          <li><a href={lang === 'en' ? '/en/servicios' : '/servicios'} class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Servicios</a></li>
           <li><a href="#features" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.features}</a></li>
           <li><a href="#pricing" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.pricing}</a></li>
           <li><a href="#security" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.security}</a></li>
@@ -40,7 +41,7 @@ const translations = t.default;
       <div>
         <h3 class="font-semibold text-gray-900 dark:text-white mb-4">{translations.footer.company}</h3>
         <ul class="space-y-3">
-          <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.about}</a></li>
+          <li><a href={lang === 'en' ? '/en/nosotros' : '/nosotros'} class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.about}</a></li>
           <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.careers}</a></li>
           <li><a href="#blog" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{translations.footer.links.blog}</a></li>
         </ul>
@@ -70,4 +71,4 @@ const translations = t.default;
       </p>
     </div>
   </div>
-</footer> -->
+</footer> 

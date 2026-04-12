@@ -1,0 +1,58 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import Footer from '../../../components/Footer.astro';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
+import AIChatbot from '../../../components/AIChatbot.astro';
+
+const lang = 'en';
+
+const planData = {
+  title: "Enterprise",
+  features: [
+    "Dedicated Server with Real IP",
+    "Unlimited administrators, groups and users",
+    "From 1 TB to 50 TB Storage",
+    "Unlimited traffic",
+    "Unlimited devices",
+    "100% Customization",
+    "Conference system without user or time limits",
+    "365 days of recycle bin history",
+    "All Nextcloud apps included",
+    "24/7 first-level support with Backup24-7 AI",
+    "Personalized support with specialized operator"
+  ],
+  capacities: ["1 TB", "2 TB", "3 TB", "4 TB", "5 TB", "6 TB", "8 TB", "10 TB", "15 TB", "20 TB", "25 TB", "30 TB", "40 TB", "50 TB"],
+  pricesMonthly: [50, 80, 110, 140, 170, 200, 260, 320, 450, 580, 700, 820, 1050, 1200],
+  pricesYearly: [500, 800, 1100, 1400, 1700, 2000, 2600, 3200, 4500, 5800, 7000, 8200, 10500, 12000],
+  perMonth: "/ month",
+  perYear: "/ year"
+};
+---
+
+<Layout title="Nubetic - Enterprise" description="Enterprise Plan - Dedicated server for growing businesses." lang={lang}>
+  <Header lang={lang} />
+  
+  <main>
+    <section class="pt-32 pb-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ProductCard lang={lang} plan={planData} color="indigo" />
+      </div>
+    </section>
+  </main>
+  
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} phoneNumber="+1234567890" />
+  <AIChatbot lang={lang} />
+</Layout>
+
+<script>
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
