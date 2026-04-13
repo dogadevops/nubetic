@@ -118,6 +118,18 @@
   "testimonials": {
     "badge": "💬 Testimonios",
     "title": "NEXTCLOUD HUB",
+    "description": "Una Suite con todo lo que necesita su empresa, todo en un solo lugar",
+    "subtitle": "Archivos de Nextcloud",
+    "paragraph1": "<b>Nextcloud Files</b> ofrece una plataforma de sincronización y acceso universal a archivos en las instalaciones con potentes capacidades de colaboración e interfaces de escritorio, móviles y web.<br /> Hace que sea fácil sincronizar, compartir y colaborar en sus archivos sin fugas de datos a terceros y teniendo control total sobre sus datos.",
+    "subtitle2": "¿Por qué los archivos de Nextcloud?",
+    "image": "/nubeticHub.webp",
+    "benefits": [
+      "Fácil acceso desde cualquier lugar",
+      "Acceso desde cualquier dispositivo y lugar",
+      "Control de accesos avanzado",
+      "Diseño intuitivo",
+      "Datos seguros y sin fugas de información"
+    ],
     "items": {
       "1": {
         "name": "María González",
@@ -171,7 +183,7 @@
       "status": "Estado del servicio",
       "privacy": "Privacidad",
       "terms": "Términos de servicio",
-      "cookies": "Política de cookies"
+      "cookies": "PSolítica de cookies"
     },
     "rights": "Todos los derechos reservados.",
     "tagline": "Hecho con ❤️ para equipos de todo el mundo"

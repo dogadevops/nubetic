@@ -22,8 +22,8 @@
   },
   "features": {
     "badge": "✨ Features",
-    "title": "Everything you need in one place",
-    "description": "Powerful tools designed for modern teams seeking productivity and security.",
+    "title": "Secure and ultra-fast synchronization across all your devices.",
+    "description": "We power your workflow with Nextcloud, the leading ecosystem for storage and backups.",
     "items": {
       "security": {
         "title": "Advanced Security",
@@ -41,7 +41,7 @@
         "title": "Automatic Backup",
         "description": "Automatic hourly backups with 90-day retention."
       },
-       "integration": {
+      "integration": {
         "title": "Integrations",
         "description": [
           "Dropbox",
@@ -59,8 +59,8 @@
   },
   "pricing": {
     "badge": "💰 Pricing",
-    "title": "Plans for every need",
-    "description": "Start free and scale as you grow. No commitments.",
+    "title": "YOUR INFORMATION ALWAYS UNDER YOUR CONTROL",
+    "description": "Unlike traditional public clouds, Nextcloud grants you absolute sovereignty over your data. You decide where it is stored and who accesses it, under an end-to-end encrypted environment. Maintain regulatory compliance without sacrificing agility, ensuring your intellectual property never leaves your infrastructure.",
     "monthly": "Monthly",
     "yearly": "Yearly",
     "saveLabel": "Save 20%",
@@ -117,7 +117,19 @@
   },
   "testimonials": {
     "badge": "💬 Testimonials",
-    "title": "What our clients say",
+    "title": "NEXTCLOUD HUB",
+    "description": "A Suite with everything your company needs, all in one place",
+    "subtitle": "Nextcloud Files",
+    "paragraph1": "<b>Nextcloud Files</b> provides an on-premises universal file synchronization and access platform with powerful collaboration capabilities and desktop, mobile, and web interfaces.<br /> It makes it easy to sync, share, and collaborate on your files without data leaks to third parties and while maintaining full control over your data.",
+    "subtitle2": "Why Nextcloud Files?",
+    "image": "/nubeticHub.webp",
+    "benefits": [
+      "Easy access from anywhere",
+      "Access from any device and location",
+      "Advanced access control",
+      "Intuitive design",
+      "Secure data and no information leaks"
+    ],
     "items": {
       "1": {
         "name": "Maria Gonzalez",

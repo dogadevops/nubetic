@@ -8,94 +8,58 @@ const { lang = "es" } = Astro.props;
 const t = await import(`../i18n/${lang}.json`);
 const translations = t.default;
 
-const testimonials = Object.values(translations.testimonials.items);
+// Extraemos los datos específicos para mayor limpieza
+const { title, description, subtitle, paragraph1, subtitle2, benefits, image } = translations.testimonials;
 ---
 
 <section id="testimonials" class="py-24 bg-white dark:bg-gray-900">
-  <!-- <div class="absolute inset-0 overflow-hidden"> -->
-
-  <div class="container inset-0 mx-auto ">
-    <div class="text-center mb-16">
-      <h2
-        class="text-4xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4"
-      >
-        {translations.testimonials.title}
+  <div class="container mx-auto px-4">
+    
+    <div class="reveal text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        {title}
       </h2>
-      <p class="text-xl  text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Una Suite con todo lo que necesita su empresa, todo en un solo lugar
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        {description}
       </p>
     </div>
-    <div class="grid grid-cols-1 md:[grid-template-columns:35%_30%_35%] gap-6">
-      <div class="reveal p-8">
-        <div class="text-center flex items-center gap-2 mb-4">
-          <h2
-            class="text-4xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            Archivos de Nextcloud
-          </h2>
-        </div>
-        <div class="flex items-center gap-4">
 
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="reveal lg:col-span-5 space-y-6">
+        <div>
+          <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            {subtitle}
+          </h3>
+          <p class="text-lg text-justify text-gray-600 dark:text-gray-400 leading-relaxed" set:html={paragraph1} />
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
+            {subtitle2}
+          </h3>
           
-          <p class="text-sm text-justify text-gray-500 dark:text-gray-400">
-            <b>Nextcloud Files</b> ofrece una plataforma de sincronización y acceso
-            universal a archivos en las instalaciones con potentes capacidades de
-            colaboración e interfaces de escritorio, móviles y web.<br /><br
-            />Hace que sea fácil sincronizar, compartir y colaborar en sus
-            archivos. Con
-            <b>Nextcloud Files</b>, los usuarios tienen fácil acceso y pueden
-            compartir y colaborar en sus archivos, fotos y documentos donde
-            estén. Todo eso sin fugas de datos a terceros y teniendo control
-            total sobre sus datos.
-          </p>
-        </div>
-      </div>
-
-      <div class="reveal p-8 ">
-        <div class="flex items-center gap-1 mb-4"></div>
-        <p class="text-gray-600 dark:text-gray-300 mb-6 italic">yo</p>
-        <div class="flex items-center gap-4">
-          <div>
-            <div class="text-sm text-gray-500 dark:text-gray-400">
-              <p>2</p>
-            </div>
+          <div class="grid gap-3">
+            {benefits.map((item: string) => (
+              <div class="flex items-center gap-3">
+                <CheckIcon class="w-6 h-6 text-blue-600" />
+                <p class="text-gray-700 dark:text-gray-300 font-medium">
+                  {item}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <div class="reveal p-8">
-        <div class="text-center flex items-center gap-2 mb-4">
-          <h2
-            class="text-4xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            ¿Por qué los archivos de Nextcloud?
-          </h2>
-        </div>
-        <div class="flex items-center gap-4">
-          <div class="space-y-4">
-            <div class="flex items-center gap-2">
-              <CheckIcon class="size-5" color="text-blue-600" />
-              <p class="text-gray-700 dark:text-gray-300">Fácil acceso desde cualquier lugar</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <CheckIcon class="size-5" color="text-blue-600" />
-              <p class="text-gray-700 dark:text-gray-300">Acceso desde cualquier dispositivo y lugar</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <CheckIcon class="size-5" color="text-blue-600" />
-              <p class="text-gray-700 dark:text-gray-300">Control de accesos avanzado</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <CheckIcon class="size-5" color="text-blue-600" />
-              <p class="text-gray-700 dark:text-gray-300">Diseño intuitivo</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <CheckIcon class="size-5" color="text-blue-600" />
-              <p class="text-gray-700 dark:text-gray-300">Datos seguros y sin fugas de información</p>
-            </div>
-          </div>
-        </div>
+      <div class="reveal lg:col-span-7 flex justify-center">
+        <img
+          src={image}
+          alt={`Imagen ilustrativa de ${title}`}
+          class="w-full h-auto max-w-4xl" 
+        />
       </div>
+
     </div>
   </div>
 </section>

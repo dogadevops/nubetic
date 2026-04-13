@@ -1,43 +1,157 @@
-# Astro Starter Kit: Minimal
+# Nubetic - Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
+Sitio web de Nubetic (nubetic.com) - Soluciones de almacenamiento en la nube basadas en Nextcloud.
+
+## 🚀 Proyecto
+
+Este proyecto es una landing page construida con **Astro v6** usando **Node.js adapter** para renderizado del lado del servidor (SSR). Permite gestión dinámica de precios mediante el factor TRWQ.
+
+## 🛠️ Stack
+
+- **Framework**: Astro v6.1.4
+- **Adapter**: @astrojs/node (modo standalone)
+- **Styling**: Tailwind CSS
+- **Deployment**: Docker / Node.js
+
+## 📋 Requisitos
+
+- Node.js >= 22.12.0
+- Docker (para contenedor)
+
+## 🧞 Comandos
+
+| Comando | Acción |
+|---------|--------|
+| `npm install` | Instala dependencias |
+| `npm run dev` | Inicia servidor de desarrollo en `localhost:4321` |
+| `npm run build` | Build de producción en `./dist/` |
+| `npm run preview` | Previsualiza el build localmente |
+
+## 🐳 Docker
+
+### Desarrollo
+
+```bash
+docker-compose up --build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Estructura del contenedor
 
-## 🚀 Project Structure
+- **Puerto**: 4321
+- **Volumen**: `./src/data:/app/src/data` (persistencia de configuración TRWQ)
+- **Variables de entorno**: `NODE_ENV=production`, `TRWQ_API_KEY`
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🔐 Seguridad
 
-```text
-/
-├── public/
+### API Key
+
+El endpoint `/api/trwq` está protegido con autenticación Bearer Token.
+
+- **Header requerido**: `Authorization: Bearer {API_KEY}`
+- **Clave actual**: Configurada en `.env` (cambiar para producción)
+
+### Límites de validación
+
+| Variable | Mínimo | Máximo |
+|----------|--------|--------|
+| VBC (Costo Base) | 0.01 | 1000 |
+| VB (Valor de Venta) | 0.01 | 1000 |
+| TRWQ (Factor) | 0.01 | 10 |
+
+## 📊 Pricing
+
+### Planes configurados
+
+- **Cuenta Personal**: 250GB - 8TB (valores fijos)
+- **Grupo de Trabajo**: 250GB - 50TB (valores fijos)
+- **Empresarial**: 1TB - 24TB (valores dinámicos × TRWQ)
+- **Empresarial+**: 36TB - 504TB (valores dinámicos × TRWQ)
+
+## 🗂️ Estructura
+
+```
+nubetic/
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── pages/
+│   │   ├── enterprise-settings.astro  # Panel de admin
+│   │   ├── api/trwq.ts                 # API de configuración
+│   │   └── servicios/                  # Páginas de servicios
+│   ├── components/
+│   │   └── ProductCard.astro          # Card de precios dinámicos
+│   ├── data/
+│   │   └── trwq-config.json           # Configuración persistida
+│   └── layouts/
+├── Dockerfile
+├── docker-compose.yml
+├── astro.config.mjs
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 📖 Roadmap
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Fase 1: Testing ✅
+- [x] Configuración Docker creada
+- [ ] Probar Docker localmente
+- [ ] Verificar todas las páginas funcionan
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Fase 2: Preparación Producción
+- [ ] Cambiar API Key por defecto
+- [ ] Configurar proveedor de hosting
+- [ ] Configurar DNS para www.nubetic.com
+- [ ] Configurar SSL/HTTPS
 
-## 🧞 Commands
+### Fase 3: Deployment
 
-All commands are run from the root of the project, from a terminal:
+#### Opciones recomendadas (Contenedores)
+| Proveedor | Pros |
+|-----------|------|
+| Railway | Configuración fácil, SSL automático |
+| Render | Tier gratuito disponible |
+| DigitalOcean App Platform | Escalable, control total |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+#### Opciones alternativas (Node.js tradicional)
+| Proveedor |
+|-----------|
+| Vercel (con Astro adapter) |
+| Netlify (con Astro adapter) |
+| Heroku |
 
-## 👀 Want to learn more?
+#### Auto-hosteado (VPS)
+- Usar imagen Docker en un VPS (DigitalOcean Droplet, Hetzner, etc.)
+- Nginx como reverse proxy con SSL (Let's Encrypt)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🔧 Configuración
+
+### Variables de entorno
+
+Crear archivo `.env` basado en `.env.example`:
+
+```bash
+TRWQ_API_KEY=tu-clave-secreta-aqui
+```
+
+### Actualizar precios
+
+1. Ir a `/enterprise-settings`
+2. Ingresar password: `NubeticAdmin2024!`
+3. Modificar VBC y VB
+4. El factor TRWQ se calcula automáticamente
+5. Los precios en las páginas de servicios se actualizan dinámicamente
+
+## 📝 Notas técnicas
+
+- **Modo SSR**: `output: 'server'` en astro.config.mjs
+- **i18n**: `prefixDefaultLocale: false` para URLs limpias (/servicios sin /es/)
+- **Persistencia**: Los cambios en TRWQ se guardan en `src/data/trwq-config.json`
+- **Docker**: Build multi-stage (builder → runner) para imagen optimizada
+
+## ⚠️ Notas de seguridad para producción
+
+1. **Cambiar API Key** antes de desplegar a producción
+2. **Usar HTTPS** obligatoriamente
+3. **No commitear .env** al repositorio
+4. **Considerar** cambiar URL del panel admin a una ruta más discreta (ej: /admin-secret)
+
+---
+
+*Documentación actualizada: Abril 2026*
