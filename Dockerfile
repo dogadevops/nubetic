@@ -6,8 +6,8 @@ WORKDIR /app
 # Copy package files
 COPY package.json package-lock.json* ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies (use legacy-peer-deps to resolve Astro v6 compatibility)
+RUN npm install --legacy-peer-deps
 
 # Copy source code
 COPY . .

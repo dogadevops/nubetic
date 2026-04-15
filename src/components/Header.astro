@@ -2,16 +2,14 @@
 const currentLocale = Astro.url.pathname.startsWith('/en/') ? 'en' : 'es';
 const pathname = Astro.url.pathname;
 
-// Detectar si estamos en una página específica
-const isNosotrosPage = pathname.includes('/nosotros');
-const isServiciosPage = pathname.includes('/servicios');
-
 // Construir el href del idioma dinámicamente
 const localeHref = (() => {
+  const pathWithoutLocale = pathname.replace(/^\/en\//, '/');
+  
   if (currentLocale === 'en') {
-    return isNosotrosPage ? '/nosotros' : isServiciosPage ? '/servicios' : '/';
+    return pathWithoutLocale;
   } else {
-    return isNosotrosPage ? '/en/nosotros' : isServiciosPage ? '/en/servicios' : '/en/';
+    return '/en' + pathWithoutLocale;
   }
 })();
 
