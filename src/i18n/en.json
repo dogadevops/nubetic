@@ -122,7 +122,7 @@
     "subtitle": "Nextcloud Files",
     "paragraph1": "<b>Nextcloud Files</b> provides an on-premises universal file synchronization and access platform with powerful collaboration capabilities and desktop, mobile, and web interfaces.<br /> It makes it easy to sync, share, and collaborate on your files without data leaks to third parties and while maintaining full control over your data.",
     "subtitle2": "Why Nextcloud Files?",
-    "image": "/nubeticHub.webp",
+    "image": "/NextcloudHub.jpg",
     "benefits": [
       "Easy access from anywhere",
       "Access from any device and location",
@@ -153,6 +153,47 @@
     "title": "Latest updates",
     "description": "Stay up to date with the latest news and tutorials.",
     "readMore": "Read more"
+  },
+  "apps": {
+    "title": "Everything you need",
+    "description": "Explore all the tools integrated in Nubetic",
+    "items": [
+      {
+        "title": "Nextcloud Office",
+        "excerpt": "Create and edit Word documents, spreadsheets, and presentations directly in your browser. Real-time collaboration with your team without additional software.",
+        "image": "/Nextcloud-Office.webp"
+      },
+      {
+        "title": "Nextcloud Spreadsheets",
+        "excerpt": "Powerful integrated spreadsheet to analyze data, create charts, and automate calculations. Share spreadsheets with your team and work simultaneously in real-time.",
+        "image": "/Nextcloud-HojasdeCalculo.webp"
+      },
+      {
+        "title": "Nextcloud Draw",
+        "excerpt": "Vector drawing tool for creating diagrams, schemes, and technical drawings. Ideal for process flows, organization charts, and technical documentation.",
+        "image": "/NextCloud-Draw.webp"
+      },
+      {
+        "title": "Nextcloud Presentation",
+        "excerpt": "Create immersive and professional presentations directly in Nextcloud. Share screens, record meetings, and connect with your audience in real-time.",
+        "image": "/Nextcloud-presentation.webp"
+      },
+      {
+        "title": "Nextcloud Talk",
+        "excerpt": "Secure platform for video calls, chats, and conferences. End-to-end encryption, call recording, and integration with your files.",
+        "image": "/Nextcloud-Talk.webp"
+      },
+      {
+        "title": "Nextcloud Whiteboard",
+        "excerpt": "Collaborative digital whiteboard for brainstorming and meetings. Draw, write, and share ideas in real-time with your team.",
+        "image": "/Nextcloud-Whiteboard.webp"
+      },
+      {
+        "title": "NubeticHub",
+        "excerpt": "Your total control center for managing files, users, and configurations. Advanced reporting, automation, and complete customization for your company.",
+        "image": "/nubeticHub.webp"
+      }
+    ]
   },
   "contact": {
     "badge": "📧 Contact",

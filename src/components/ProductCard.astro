@@ -270,16 +270,21 @@ const colors = colorClasses[color];
         "9 TB": "/capacidades/9TB.png",
         "10 TB": "/capacidades/10TB.png",
         "15 TB": "/capacidades/15TB.png",
+        "16 TB": "/capacidades/16TB.png",
         "20 TB": "/capacidades/20TB.png",
+        "24 TB": "/capacidades/24TB.png",
         "25 TB": "/capacidades/25TB.png",
         "30 TB": "/capacidades/30TB.png",
+        "36 TB": "/capacidades/36TB.png",
         "40 TB": "/capacidades/40TB.png",
         "50 TB": "/capacidades/50TB.png",
+        "56 TB": "/capacidades/56TB.png",
         "60 TB": "/capacidades/60TB.png",
         "72 TB": "/capacidades/72TB.png",
         "84 TB": "/capacidades/84TB.png",
         "96 TB": "/capacidades/96TB.png",
         "108 TB": "/capacidades/108TB.png",
+        "112 TB": "/capacidades/112TB.png",
         "120 TB": "/capacidades/120TB.png",
         "144 TB": "/capacidades/144TB.png",
         "168 TB": "/capacidades/168TB.png",
@@ -300,8 +305,18 @@ const colors = colorClasses[color];
       };
 
       var newSrc = imageMap[selectedCapacity] || "/capacidades/250.png";
-      productImage.src = newSrc;
-      console.log("Image updated to:", newSrc);
+      
+      // Efecto de aparición
+      productImage.style.opacity = "0";
+      productImage.style.transform = "scale(0.95)";
+      productImage.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+      
+      setTimeout(function() {
+        productImage.src = newSrc;
+        productImage.style.opacity = "1";
+        productImage.style.transform = "scale(1)";
+        console.log("Image updated to:", newSrc);
+      }, 150);
     }
 
     function updatePrice() {
@@ -343,46 +358,17 @@ const colors = colorClasses[color];
     // Store original capacities for image mapping
     if (capacitySelect) {
       var capacities = JSON.stringify([
-        "250 GB",
-        "500 GB",
-        "750 GB",
         "1 TB",
         "2 TB",
-        "3 TB",
         "4 TB",
-        "5 TB",
-        "6 TB",
-        "7 TB",
         "8 TB",
-        "9 TB",
-        "10 TB",
-        "15 TB",
-        "20 TB",
-        "25 TB",
-        "30 TB",
-        "40 TB",
-        "50 TB",
-        "60 TB",
-        "72 TB",
+        "16 TB",
+        "24 TB",
+        "36 TB",
+        "56 TB",
         "84 TB",
-        "96 TB",
-        "108 TB",
-        "120 TB",
-        "144 TB",
-        "168 TB",
-        "192 TB",
-        "216 TB",
-        "240 TB",
-        "264 TB",
-        "288 TB",
-        "312 TB",
+        "112 TB",
         "336 TB",
-        "360 TB",
-        "384 TB",
-        "408 TB",
-        "432 TB",
-        "456 TB",
-        "480 TB",
         "504 TB",
       ]);
       capacitySelect.dataset.originalCapacities = capacities;
