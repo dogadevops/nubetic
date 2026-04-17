@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
-import { kv } from '@vercel/kv';
+
+// In-memory storage (resets on server restart)
+const storage: Record<string, any> = {};
 
 export const prerender = false;
 
@@ -41,8 +43,8 @@ export const GET: APIRoute = async ({ request }) => {
   }
   
   try {
-    const config = await kv.get(CONFIG_KEY);
-    return new Response(JSON.stringify(config || {}), {
+    const config = storage[CONFIG_KEY] || {};
+    return new Response(JSON.stringify(config), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
@@ -91,7 +93,7 @@ export const POST: APIRoute = async ({ request }) => {
       updatedAt: new Date().toISOString()
     };
 
-    await kv.set(CONFIG_KEY, config);
+    storage[CONFIG_KEY] = config;
 
     return new Response(JSON.stringify(config), {
       status: 200,
