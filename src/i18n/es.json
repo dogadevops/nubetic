@@ -118,6 +118,18 @@
   "testimonials": {
     "badge": "💬 Testimonios",
     "title": "NEXTCLOUD HUB",
+    "description": "Una Suite con todo lo que necesita su empresa, todo en un solo lugar",
+    "subtitle": "Archivos de Nextcloud",
+    "paragraph1": "<b>Nextcloud Files</b> ofrece una plataforma de sincronización y acceso universal a archivos en las instalaciones con potentes capacidades de colaboración e interfaces de escritorio, móviles y web.<br /> Hace que sea fácil sincronizar, compartir y colaborar en sus archivos sin fugas de datos a terceros y teniendo control total sobre sus datos.",
+    "subtitle2": "¿Por qué los archivos de Nextcloud?",
+    "image": "/NextcloudHub.jpg",
+    "benefits": [
+      "Fácil acceso desde cualquier lugar",
+      "Acceso desde cualquier dispositivo y lugar",
+      "Control de accesos avanzado",
+      "Diseño intuitivo",
+      "Datos seguros y sin fugas de información"
+    ],
     "items": {
       "1": {
         "name": "María González",
@@ -141,6 +153,47 @@
     "title": "Últimas novedades",
     "description": "Mantente al día con las últimas noticias y tutoriales.",
     "readMore": "Leer más"
+  },
+  "apps": {
+    "title": "Todo lo que necesitas",
+    "description": "Explora todas las herramientas integradas en Nubetic",
+    "items": [
+      {
+        "title": "Nextcloud Office",
+        "excerpt": "Crea y edita documentos de Word, hojas de cálculo y presentaciones directamente en tu navegador. Colaboración en tiempo real con tu equipo sin necesidad de software adicional.",
+        "image": "/Nextcloud-Office.webp"
+      },
+      {
+        "title": "Nextcloud Hojas de Cálculo",
+        "excerpt": "Potente hoja de cálculo integrada para analizar datos, crear gráficos y automatizar cálculos. Comparte hojas de cálculo con tu equipo y trabaja simultáneamente en tiempo real.",
+        "image": "/Nextcloud-HojasdeCalculo.webp"
+      },
+      {
+        "title": "Nextcloud Draw",
+        "excerpt": "Herramienta de dibujo vectorial para crear diagramas, esquemas y dibujos técnicos. Ideal para flujo de procesos, organigramas y documentación técnica.",
+        "image": "/NextCloud-Draw.webp"
+      },
+      {
+        "title": "Nextcloud Presentation",
+        "excerpt": "Crea presentaciones inmersivas y profesionales directamente en Nextcloud. Comparte pantallas, graba reuniones y conecta con tu audiencia en tiempo real.",
+        "image": "/Nextcloud-presentation.webp"
+      },
+      {
+        "title": "Nextcloud Talk",
+        "excerpt": "Plataforma de comunicación segura para videollamadas, chats y conferencias. Cifrado de extremo a extremo, grabación de llamadas y integración con tus archivos.",
+        "image": "/Nextcloud-Talk.webp"
+      },
+      {
+        "title": "Nextcloud Whiteboard",
+        "excerpt": "Pizarra digital colaborativa para brainstorms, lluvia de ideas y reuniones. Dibuja, escribe y comparte ideas en tiempo real con tu equipo.",
+        "image": "/Nextcloud-Whiteboard.webp"
+      },
+      {
+        "title": "NubeticHub",
+        "excerpt": "Tu centro de control total para gestionar archivos, usuarios y configuraciones. Reportes avanzados, automatización y personalización completa para tu empresa.",
+        "image": "/nubeticHub.webp"
+      }
+    ]
   },
   "contact": {
     "badge": "📧 Contacto",
@@ -171,7 +224,7 @@
       "status": "Estado del servicio",
       "privacy": "Privacidad",
       "terms": "Términos de servicio",
-      "cookies": "Política de cookies"
+      "cookies": "PSolítica de cookies"
     },
     "rights": "Todos los derechos reservados.",
     "tagline": "Hecho con ❤️ para equipos de todo el mundo"

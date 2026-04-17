@@ -1,0 +1,492 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Server-rendered (not static) para permitir POST
+export const prerender = false;
+
+const lang = 'es';
+---
+
+<Layout title="Nubetic - Enterprise" description="Enterprise Settings">
+  <div class="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+      <!-- Login Form -->
+      <div id="login-panel" class="bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-2xl flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+          <h1 class="text-2xl font-bold text-white mb-2">Panel Secreto</h1>
+          <p class="text-gray-400 text-sm">Acceso restringido solo para administradores</p>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Contraseña</label>
+            <input 
+              type="password" 
+              id="admin-password"
+              class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              placeholder="••••••••"
+            />
+          </div>
+          <button 
+            id="login-btn"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"
+          >
+            Acceder
+          </button>
+          <p id="login-error" class="text-red-400 text-sm text-center hidden">Contraseña incorrecta</p>
+        </div>
+      </div>
+
+      <!-- Admin Panel (hidden by default) -->
+      <div id="admin-panel" class="hidden">
+        <div class="bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-white">Configuración de Precios</h2>
+                <p class="text-gray-400 text-xs">Sistema secreto de mark-up</p>
+              </div>
+            </div>
+            <button id="logout-btn" class="text-gray-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Variables Section -->
+          <div class="space-y-6">
+            <div class="bg-gray-700/50 rounded-xl p-6">
+              <h3 class="text-sm font-semibold text-gray-300 mb-4 uppercase tracking-wider">Variables de Cálculo</h3>
+              
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                <div>
+                  <label class="block text-sm text-gray-400 mb-2">VBC (Costo Base)</label>
+                  <input 
+                    type="number" 
+                    id="vbc-input"
+                    class="w-full bg-gray-600 border border-gray-500 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="1.0"
+                    step="0.01"
+                    min="0.01"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">Valor base de referencia</p>
+                </div>
+                <div>
+                  <label class="block text-sm text-gray-400 mb-2">VB (Valor de Venta)</label>
+                  <input 
+                    type="number" 
+                    id="vb-input"
+                    class="w-full bg-gray-600 border border-gray-500 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="1.0"
+                    step="0.01"
+                    min="0.01"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">Precio que ve el cliente</p>
+                </div>
+              </div>
+
+              <div class="bg-blue-600/20 border border-blue-500/30 rounded-lg p-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-300">Factor TRWQ = VB / VBC</span>
+                  <span id="trwq-display" class="text-2xl font-bold text-blue-400">1.0000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Save Button -->
+            <button 
+              id="save-btn"
+              class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              Guardar Configuración
+            </button>
+
+            <!-- Valores de Referencia - CUENTA PERSONAL (NO SE MODIFICAN) -->
+            <div class="bg-gray-700/30 rounded-xl p-4">
+              <h4 class="text-xs font-semibold text-gray-400 mb-3 uppercase">Valores Referencia - CUENTA PERSONAL</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-gray-600">
+                      <th class="text-left py-2 px-3 text-gray-300 font-semibold">Capacidad</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Mensual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Anual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">$/TB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">250 GB</td><td class="py-2 px-3 text-right text-green-400 font-mono">4.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">40.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">16.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">500 GB</td><td class="py-2 px-3 text-right text-green-400 font-mono">5.50</td><td class="py-2 px-3 text-right text-green-400 font-mono">55.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">11.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">750 GB</td><td class="py-2 px-3 text-right text-green-400 font-mono">7.20</td><td class="py-2 px-3 text-right text-green-400 font-mono">72.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">9.60</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">1 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">8.90</td><td class="py-2 px-3 text-right text-green-400 font-mono">89.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">8.90</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">2 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">15.50</td><td class="py-2 px-3 text-right text-green-400 font-mono">155.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">7.75</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">3 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">21.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">210.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">7.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">4 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">25.90</td><td class="py-2 px-3 text-right text-green-400 font-mono">259.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">6.48</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">5 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">29.90</td><td class="py-2 px-3 text-right text-green-400 font-mono">299.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">5.98</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">6 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">33.50</td><td class="py-2 px-3 text-right text-green-400 font-mono">335.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">5.58</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">7 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">36.90</td><td class="py-2 px-3 text-right text-green-400 font-mono">369.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">5.27</td></tr>
+                    <tr class="hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">8 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">39.90</td><td class="py-2 px-3 text-right text-green-400 font-mono">399.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">4.99</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-xs text-gray-500 mt-3 italic">* Estos valores siempre fijos. Se multiplican por TRWQ en las páginas de servicios.</p>
+            </div>
+
+            <!-- Valores de Referencia - GRUPO DE TRABAJO (NO SE MODIFICAN) -->
+            <div class="bg-gray-700/30 rounded-xl p-4">
+              <h4 class="text-xs font-semibold text-gray-400 mb-3 uppercase">Valores Referencia - GRUPO DE TRABAJO</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-gray-600">
+                      <th class="text-left py-2 px-3 text-gray-300 font-semibold">Capacidad</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Mensual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Anual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">$/TB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">250 GB</td><td class="py-2 px-3 text-right text-green-400 font-mono">26.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">225.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">104.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">500 GB</td><td class="py-2 px-3 text-right text-green-400 font-mono">35.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">305.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">70.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">750 GB</td><td class="py-2 px-3 text-right text-green-400 font-mono">43.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">385.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">57.33</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">1 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">50.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">450.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">50.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">2 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">85.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">780.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">42.50</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">3 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">115.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,060.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">38.33</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">4 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">145.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,350.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">36.25</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">5 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">170.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,580.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">34.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">6 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">195.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,820.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">32.50</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">7 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">220.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">2,050.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">31.43</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">8 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">240.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">2,250.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">30.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">9 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">265.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">2,480.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">29.44</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">10 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">285.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">2,690.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">28.50</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">15 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">390.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">3,800.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">26.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">20 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">480.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">4,950.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">24.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">25 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">565.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">5,900.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">22.60</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">30 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">640.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">6,850.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">21.33</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">40 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">760.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">8,400.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">19.00</td></tr>
+                    <tr class="hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">50 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">852.80</td><td class="py-2 px-3 text-right text-green-400 font-mono">9,623.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">17.06</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-xs text-gray-500 mt-3 italic">* Estos valores siempre fijos. Se multiplican por TRWQ en las páginas de servicios.</p>
+            </div>
+
+            <!-- Valores de Referencia - EMPRESARIAL -->
+            <div class="bg-gray-700/30 rounded-xl p-4">
+              <h4 class="text-xs font-semibold text-gray-400 mb-3 uppercase">Valores Referencia - EMPRESARIAL</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-gray-600">
+                      <th class="text-left py-2 px-3 text-gray-300 font-semibold">Capacidad</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Mensual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Anual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">$/TB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">1 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">91.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,015.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">91.00</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">2 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">135.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,250.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">67.50</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">4 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">210.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,850.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">52.50</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">8 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">295.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">2,600.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">36.88</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">16 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">385.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">3,200.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">24.06</td></tr>
+                    <tr class="hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">24 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">455.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">3,699.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">18.96</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-xs text-gray-500 mt-3 italic">* Estos valores siempre fijos. Se multiplican por TRWQ en las páginas de servicios.</p>
+            </div>
+
+            <!-- Valores de Referencia - EMPRESARIAL+ -->
+            <div class="bg-gray-700/30 rounded-xl p-4">
+              <h4 class="text-xs font-semibold text-gray-400 mb-3 uppercase">Valores Referencia - EMPRESARIAL+</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-gray-600">
+                      <th class="text-left py-2 px-3 text-gray-300 font-semibold">Capacidad</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Mensual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">Anual ($)</th>
+                      <th class="text-right py-2 px-3 text-gray-300 font-semibold">$/TB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">36 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">550.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">6,138.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">15.28</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">56 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">790.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">8,800.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">14.11</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">84 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,100.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">12,300.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">13.10</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">112 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">1,400.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">15,600.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">12.50</td></tr>
+                    <tr class="border-b border-gray-700/50 hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">336 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">2,500.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">27,900.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">7.44</td></tr>
+                    <tr class="hover:bg-gray-600/30"><td class="py-2 px-3 text-gray-300">504 TB</td><td class="py-2 px-3 text-right text-green-400 font-mono">3,250.00</td><td class="py-2 px-3 text-right text-green-400 font-mono">36,270.00</td><td class="py-2 px-3 text-right text-blue-400 font-mono">6.45</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-xs text-gray-500 mt-3 italic">* Estos valores siempre fijos. Se multiplican por TRWQ en las páginas de servicios.</p>
+            </div>
+
+            <!-- Current Values -->
+            <div class="bg-gray-700/30 rounded-xl p-4">
+              <h4 class="text-xs font-semibold text-gray-400 mb-3 uppercase">Valores Actuales</h4>
+              <div class="grid grid-cols-3 gap-2 text-sm">
+                <div class="bg-gray-600/50 rounded p-2">
+                  <p class="text-gray-400 text-xs">VBC</p>
+                  <p id="current-vbc" class="text-white font-mono">1.00</p>
+                </div>
+                <div class="bg-gray-600/50 rounded p-2">
+                  <p class="text-gray-400 text-xs">VB</p>
+                  <p id="current-vb" class="text-white font-mono">1.00</p>
+                </div>
+                <div class="bg-gray-600/50 rounded p-2">
+                  <p class="text-gray-400 text-xs">TRWQ</p>
+                  <p id="current-trwq" class="text-green-400 font-mono">1.0000</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Success Message -->
+            <p id="save-success" class="text-green-400 text-sm text-center hidden flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              ¡Configuración guardada correctamente!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded');
+    
+    const ADMIN_PASSWORD = 'NubeticAdmin2024!';
+    const API_KEY = 'NubeticAdmin2024_SecureKey_abc123xyz789';
+    
+    var loginPanel = document.getElementById('login-panel');
+    var adminPanel = document.getElementById('admin-panel');
+    var passwordInput = document.getElementById('admin-password');
+    var loginBtn = document.getElementById('login-btn');
+    var loginError = document.getElementById('login-error');
+    var logoutBtn = document.getElementById('logout-btn');
+    var vbcInput = document.getElementById('vbc-input');
+    var vbInput = document.getElementById('vb-input');
+    var trwqDisplay = document.getElementById('trwq-display');
+    var saveBtn = document.getElementById('save-btn');
+    var saveSuccess = document.getElementById('save-success');
+    var currentVbc = document.getElementById('current-vbc');
+    var currentVb = document.getElementById('current-vb');
+    var currentTrwq = document.getElementById('current-trwq');
+    
+    console.log('Elements found:', {loginPanel, adminPanel, saveBtn, vbcInput, vbInput});
+
+    // Helper function to get auth header
+    function getAuthHeader() {
+      return 'Bearer ' + API_KEY;
+    }
+    
+    async function loadValues() {
+      console.log('Loading values from API...');
+      try {
+        var response = await fetch('/api/trwq', {
+          headers: {
+            'Authorization': getAuthHeader()
+          }
+        });
+        console.log('Response status:', response.status);
+        
+        if (response.status === 401) {
+          console.error('Unauthorized - Invalid API Key');
+          return;
+        }
+        
+        var data = await response.json();
+        console.log('Data received:', data);
+        
+        var vbc = data.vbc || 1;
+        var vb = data.vb || 1;
+        var trwq = data.trwq || 1;
+        
+        vbcInput.value = vbc.toString();
+        vbInput.value = vb.toString();
+        trwqDisplay.textContent = trwq.toFixed(4);
+        
+        if (currentVbc) currentVbc.textContent = vbc.toFixed(2);
+        if (currentVb) currentVb.textContent = vb.toFixed(2);
+        if (currentTrwq) currentTrwq.textContent = trwq.toFixed(4);
+        
+        console.log('Values loaded successfully:', {vbc, vb, trwq});
+      } catch (e) {
+        console.error('Error loading config:', e);
+      }
+    }
+
+    function calculateTrwq() {
+      var vbc = parseFloat(vbcInput.value) || 1;
+      var vb = parseFloat(vbInput.value) || 1;
+      var trwq = vb / vbc;
+      trwqDisplay.textContent = trwq.toFixed(4);
+      return trwq;
+    }
+
+    // Cookie helpers (global)
+    function setCookie(name, value, days) {
+      var expires = '';
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+      }
+      document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    }
+    
+    function getCookie(name) {
+      var nameEQ = name + '=';
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    function login() {
+      if (passwordInput.value === ADMIN_PASSWORD) {
+        localStorage.setItem('nubetic_admin_logged', 'true');
+        loginPanel.classList.add('hidden');
+        adminPanel.classList.remove('hidden');
+        loadValues();
+      } else {
+        loginError.classList.remove('hidden');
+        passwordInput.value = '';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('nubetic_admin_logged');
+      adminPanel.classList.add('hidden');
+      loginPanel.classList.remove('hidden');
+      passwordInput.value = '';
+      loginError.classList.add('hidden');
+    }
+
+    // Cookie helpers
+    function setCookie(name, value, days) {
+      var expires = '';
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+      }
+      document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    }
+    
+    function getCookie(name) {
+      var nameEQ = name + '=';
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+    
+    async function saveConfig() {
+      var vbc = parseFloat(vbcInput.value) || 1;
+      var vb = parseFloat(vbInput.value) || 1;
+      
+      console.log('=== SAVE CONFIG (API) ===');
+      console.log('VBC:', vbc, 'VB:', vb);
+      
+      try {
+        var response = await fetch('/api/trwq', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': getAuthHeader()
+          },
+          body: JSON.stringify({ vbc, vb })
+        });
+        
+        console.log('Response status:', response.status);
+        
+        if (response.status === 401) {
+          alert('Unauthorized - Invalid API Key');
+          return;
+        }
+        
+        if (response.status === 400) {
+          var errorData = await response.json();
+          alert('Error: ' + errorData.error);
+          return;
+        }
+        
+        if (!response.ok) {
+          throw new Error('HTTP error! status: ' + response.status);
+        }
+        
+        var data = await response.json();
+        console.log('Saved data:', data);
+        
+        var trwq = data.trwq;
+        console.log('Calculated TRWQ:', trwq);
+        
+        // Force reload the values from API to ensure we have latest
+        await loadValues();
+        
+        // Also update inputs to match
+        vbcInput.value = vbc.toString();
+        vbInput.value = vb.toString();
+        trwqDisplay.textContent = trwq.toFixed(4);
+        
+        console.log('UI updated with new values');
+        
+        // Show success message (no redirect)
+        saveSuccess.classList.remove('hidden');
+        
+        setTimeout(function() {
+          saveSuccess.classList.add('hidden');
+        }, 3000);
+      } catch (e) {
+        console.error('Error saving config:', e);
+        alert('Error al guardar: ' + e.message);
+      }
+    }
+
+    // Check if already logged in
+    if (localStorage.getItem('nubetic_admin_logged') === 'true') {
+      loginPanel.classList.add('hidden');
+      adminPanel.classList.remove('hidden');
+      loadValues();
+    }
+
+    // Event listeners
+    if (loginBtn) loginBtn.addEventListener('click', login);
+    if (passwordInput) passwordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') login();
+    });
+    if (logoutBtn) logoutBtn.addEventListener('click', logout);
+    if (vbcInput) vbcInput.addEventListener('input', calculateTrwq);
+    if (vbInput) vbInput.addEventListener('input', calculateTrwq);
+    if (saveBtn) {
+      console.log('Adding click listener to saveBtn');
+      saveBtn.addEventListener('click', saveConfig);
+    }
+  });
+</script>

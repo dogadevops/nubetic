@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import AIChatbot from '../../components/AIChatbot.astro';
+
+const lang = 'es';
+
+// Tabla de referencia - valores base (sin TRWQ)
+const referencia = {
+  capacities: ["250 GB", "500 GB", "750 GB", "1 TB", "2 TB", "3 TB", "4 TB", "5 TB", "6 TB", "7 TB", "8 TB"],
+  preciosMensuales: [4.00, 5.50, 7.20, 8.90, 15.50, 21.00, 25.90, 29.90, 33.50, 36.90, 39.90],
+  preciosAnuales: [40.00, 55.00, 72.00, 89.00, 155.00, 210.00, 259.00, 299.00, 335.00, 369.00, 399.00],
+  precioXTBMensual: [16.00, 11.00, 9.60, 8.90, 7.75, 7.00, 6.48, 5.98, 5.58, 5.27, 4.99]
+};
+
+const planData = {
+  title: "Cuenta Personal",
+  features: [
+    "1 Usuario",
+    "Desde 250 GB hasta 8 TB de Almacenamiento",
+    "Tráfico ilimitado",
+    "Dispositivos ilimitados",
+    "Todas las aplicaciones del entorno Nextcloud sin límite de uso",
+    "360 días de historial de papelera de reciclaje"
+  ],
+  capacities: referencia.capacities,
+  pricesMonthly: referencia.preciosMensuales,
+  pricesYearly: referencia.preciosAnuales,
+  precioXTBMensual: referencia.precioXTBMensual,
+  perMonth: "/ mes",
+  perYear: "/ año"
+};
+---
+
+<Layout title="Nubetic - Cuenta Personal" description="Plan Cuenta Personal - Almacenamiento en la nube para uso individual." lang={lang}>
+  <Header lang={lang} />
+  
+  <main>
+    <section class="pt-32 pb-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ProductCard lang={lang} plan={planData} color="blue" />
+      </div>
+    </section>
+  </main>
+  
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} phoneNumber="+1234567890" />
+  <AIChatbot lang={lang} />
+</Layout>
+
+<script>
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script> 

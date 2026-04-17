@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import AIChatbot from '../../components/AIChatbot.astro';
+
+const lang = 'es';
+
+// Tabla de referencia - valores base (sin TRWQ)
+const referencia = {
+  capacities: ["250 GB", "500 GB", "750 GB", "1 TB", "2 TB", "3 TB", "4 TB", "5 TB", "6 TB", "7 TB", "8 TB", "9 TB", "10 TB", "15 TB", "20 TB", "25 TB", "30 TB", "40 TB", "50 TB"],
+  preciosMensuales: [26.00, 35.00, 43.00, 50.00, 85.00, 115.00, 145.00, 170.00, 195.00, 220.00, 240.00, 265.00, 285.00, 390.00, 480.00, 565.00, 640.00, 760.00, 852.80],
+  preciosAnuales: [225.00, 305.00, 385.00, 450.00, 780.00, 1060.00, 1350.00, 1580.00, 1820.00, 2050.00, 2250.00, 2480.00, 2690.00, 3800.00, 4950.00, 5900.00, 6850.00, 8400.00, 9623.00],
+  precioXTBMensual: [104.00, 70.00, 57.33, 50.00, 42.50, 38.33, 36.25, 34.00, 32.50, 31.43, 30.00, 29.44, 28.50, 26.00, 24.00, 22.60, 21.33, 19.00, 17.06]
+};
+
+const planData = {
+  title: "Grupo de Trabajo",
+  features: [
+    "1 Administrador",
+    "Usuarios ilimitados",
+    "Desde 250 GB hasta 50 TB de Almacenamiento",
+    "Tráfico ilimitado",
+    "Dispositivos ilimitados",
+    "Sistema de conferencia sin límite de usuarios y tiempo",
+    "365 días de historial de papelera de reciclaje",
+    "1 Grupo de Trabajo ilimitado",
+    "Soporte de primer nivel 24/7 con IA Backup24-7",
+    "Soporte personalizado con operador especializado"
+  ],
+  capacities: referencia.capacities,
+  pricesMonthly: referencia.preciosMensuales,
+  pricesYearly: referencia.preciosAnuales,
+  precioXTBMensual: referencia.precioXTBMensual,
+  perMonth: "/ mes",
+  perYear: "/ año"
+};
+---
+
+<Layout title="Nubetic - Grupo de Trabajo" description="Plan Grupo de Trabajo - Perfecto para equipos pequeños con necesidades de colaboración." lang={lang}>
+  <Header lang={lang} />
+  
+  <main>
+    <section class="pt-32 pb-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ProductCard lang={lang} plan={planData} color="purple" />
+      </div>
+    </section>
+  </main>
+  
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} phoneNumber="+1234567890" />
+  <AIChatbot lang={lang} />
+</Layout>
+
+<script>
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>

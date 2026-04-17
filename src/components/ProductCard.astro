@@ -1,0 +1,396 @@
+---
+interface PlanData {
+  title: string;
+  features: string[];
+  capacities: string[];
+  pricesMonthly: number[];
+  pricesYearly: number[];
+  precioXTBMensual?: number[];
+  perMonth: string;
+  perYear: string;
+}
+
+interface Props {
+  lang?: string;
+  plan: PlanData;
+  color?: "blue" | "purple" | "indigo" | "violet";
+}
+
+const { lang = "es", plan, color = "blue" } = Astro.props;
+
+const colorClasses = {
+  blue: {
+    gradient: "from-blue-600 to-blue-800",
+    button: "bg-blue-600 hover:bg-blue-700",
+    accent: "text-blue-600 dark:text-blue-400",
+    border: "border-blue-200 dark:border-blue-800",
+  },
+  purple: {
+    gradient: "from-purple-600 to-purple-800",
+    button: "bg-purple-600 hover:bg-purple-700",
+    accent: "text-purple-600 dark:text-purple-400",
+    border: "border-purple-200 dark:border-purple-800",
+  },
+  indigo: {
+    gradient: "from-indigo-600 to-indigo-800",
+    button: "bg-indigo-600 hover:bg-indigo-700",
+    accent: "text-indigo-600 dark:text-indigo-400",
+    border: "border-indigo-200 dark:border-indigo-800",
+  },
+  violet: {
+    gradient: "from-violet-600 to-violet-800",
+    button: "bg-violet-600 hover:bg-violet-700",
+    accent: "text-violet-600 dark:text-violet-400",
+    border: "border-violet-200 dark:border-violet-800",
+  },
+};
+
+const colors = colorClasses[color];
+---
+
+<!-- CTA Product Section -->
+<div
+  class="reveal bg-gray-50 dark:bg-gray-900 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16"
+>
+  <div
+    class="mx-auto max-w-5xl bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 sm:p-8 lg:p-10"
+  >
+    <!-- Product Grid -->
+    <div class="flex flex-col sm:flex-row gap-6 items-start">
+      <!-- Product Image (Left) -->
+      <div class="w-full sm:w-3/4 reveal">
+        <div
+          class="rounded-xl flex items-center justify-center overflow-hidden shadow-lg"
+          style="width: 100%; max-width: 500px; height: 700px; margin: 0 auto; background-color: transparent;"
+        >
+          <img
+            src="/capacidades/250.png"
+            alt={`${plan.capacities[0]} Cloud`}
+            class="w-full h-full object-contain p-4"
+            id="product-image"
+          />
+        </div>
+      </div>
+
+      <!-- Product Details (Right) -->
+      <div class="w-full sm:w-3/5 reveal">
+        <h2
+          class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide"
+        >
+          {plan.title}
+        </h2>
+
+        <ul
+          class="text-sm space-y-2 mb-6 text-gray-600 dark:text-gray-400 leading-relaxed"
+        >
+          {
+            plan.features.map((feature) => (
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                {feature}
+              </li>
+            ))
+          }
+        </ul>
+
+        <!-- Selectors -->
+        <div class="space-y-4 mb-6">
+          <div>
+            <label
+              class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300"
+            >
+              {lang === "es" ? "Planes" : "Plans"}
+            </label>
+            <select
+              id="plan-select"
+              class="w-full border border-gray-200 dark:border-gray-600 p-3 text-sm bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg transition-all cursor-pointer"
+            >
+              <option value="monthly"
+                >{lang === "es" ? "Mensual" : "Monthly"}</option
+              >
+              <option value="yearly"
+                >{lang === "es" ? "Anual" : "Yearly"}</option
+              >
+            </select>
+          </div>
+          <div>
+            <label
+              class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300"
+            >
+              {lang === "es" ? "Capacidad" : "Capacity"}
+            </label>
+            <select
+              id="capacity-select"
+              class="w-full border border-gray-200 dark:border-gray-600 p-3 text-sm bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg transition-all cursor-pointer"
+            >
+              {plan.capacities.map((cap) => <option value={cap}>{cap}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <!-- Price and Button -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+          <div>
+            <span
+              id="product-price"
+              class="text-3xl font-bold text-gray-800 dark:text-white"
+              data-prices-monthly={JSON.stringify(plan.pricesMonthly)}
+              data-prices-yearly={JSON.stringify(plan.pricesYearly)}
+              data-per-month={plan.perMonth}
+              data-per-year={plan.perYear}
+              data-initial-index="0"
+            >
+              $--
+            </span>
+          </div>
+        </div>
+        <button
+          class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-sm transition-all shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+        >
+          {lang === "es" ? "Comprar ahora" : "Buy now"}
+        </button>
+      </div>
+    </div>
+
+    <!-- Additional Info Table -->
+    <div class="mt-12 reveal">
+      <h3
+        class="border-t-2 border-blue-600 inline-block pt-3 font-bold text-sm mb-6 text-gray-800 dark:text-white uppercase"
+      >
+        {lang === "es" ? "Información adicional" : "Additional Information"}
+      </h3>
+      <table
+        class="w-full border-collapse border border-gray-200 dark:border-gray-600 text-sm rounded-lg overflow-hidden"
+      >
+        <tbody>
+          <tr class="bg-gray-50 dark:bg-gray-700/50">
+            <td
+              class="border border-gray-200 dark:border-gray-600 p-4 font-semibold text-gray-700 dark:text-gray-300 w-1/3"
+            >
+              {lang === "es" ? "Planes" : "Plans"}
+            </td>
+            <td
+              class="border border-gray-200 dark:border-gray-600 p-4 italic text-gray-600 dark:text-gray-400"
+            >
+              {lang === "es" ? "Mensual, Anual" : "Monthly, 12 Months"}
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="border border-gray-200 dark:border-gray-600 p-4 font-semibold text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50"
+            >
+              {lang === "es" ? "Capacidad" : "Capacity"}
+            </td>
+            <td
+              class="border border-gray-200 dark:border-gray-600 p-4 italic text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50"
+            >
+              {plan.capacities.join(", ")}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var planSelect = document.getElementById("plan-select");
+    var capacitySelect = document.getElementById("capacity-select");
+    var priceDisplay = document.getElementById("product-price");
+    var precioXTBDisplay = document.getElementById("precio-x-tb");
+    var productImage = document.getElementById("product-image");
+    var currentTrwq = 1;
+
+    // API Key for public read (same key, but minimal security for GET)
+    var API_KEY = "NubeticAdmin2024_SecureKey_abc123xyz789";
+
+    function getAuthHeader() {
+      return "Bearer " + API_KEY;
+    }
+
+    // Fetch TRWQ from API
+    async function loadTrwq() {
+      try {
+        var response = await fetch("/api/trwq", {
+          headers: {
+            Authorization: getAuthHeader(),
+          },
+        });
+
+        if (response.status === 401) {
+          console.error("Unauthorized - Invalid API Key");
+          currentTrwq = 1;
+          return;
+        }
+
+        var data = await response.json();
+        currentTrwq = data.trwq || 1;
+        console.log("TRWQ from API:", currentTrwq);
+      } catch (e) {
+        console.error("Error loading TRWQ:", e);
+        currentTrwq = 1;
+      }
+    }
+
+    // Update image based on selected capacity
+    function updateImage() {
+      if (!productImage || !capacitySelect) return;
+
+      var capacities = JSON.parse(
+        capacitySelect.dataset.originalCapacities || "[]",
+      );
+      var selectedCapacity = capacitySelect.value;
+
+      // Map capacity to image filename
+      var imageMap = {
+        "250 GB": "/capacidades/250.png",
+        "500 GB": "/capacidades/500.png",
+        "750 GB": "/capacidades/750.png",
+        "1 TB": "/capacidades/1TB.png",
+        "2 TB": "/capacidades/2TB.png",
+        "3 TB": "/capacidades/3TB.png",
+        "4 TB": "/capacidades/4TB.png",
+        "5 TB": "/capacidades/5TB.png",
+        "6 TB": "/capacidades/6TB.png",
+        "7 TB": "/capacidades/7TB.png",
+        "8 TB": "/capacidades/8TB.png",
+        "9 TB": "/capacidades/9TB.png",
+        "10 TB": "/capacidades/10TB.png",
+        "15 TB": "/capacidades/15TB.png",
+        "16 TB": "/capacidades/16TB.png",
+        "20 TB": "/capacidades/20TB.png",
+        "24 TB": "/capacidades/24TB.png",
+        "25 TB": "/capacidades/25TB.png",
+        "30 TB": "/capacidades/30TB.png",
+        "36 TB": "/capacidades/36TB.png",
+        "40 TB": "/capacidades/40TB.png",
+        "50 TB": "/capacidades/50TB.png",
+        "56 TB": "/capacidades/56TB.png",
+        "60 TB": "/capacidades/60TB.png",
+        "72 TB": "/capacidades/72TB.png",
+        "84 TB": "/capacidades/84TB.png",
+        "96 TB": "/capacidades/96TB.png",
+        "108 TB": "/capacidades/108TB.png",
+        "112 TB": "/capacidades/112TB.png",
+        "120 TB": "/capacidades/120TB.png",
+        "144 TB": "/capacidades/144TB.png",
+        "168 TB": "/capacidades/168TB.png",
+        "192 TB": "/capacidades/192TB.png",
+        "216 TB": "/capacidades/216TB.png",
+        "240 TB": "/capacidades/240TB.png",
+        "264 TB": "/capacidades/264TB.png",
+        "288 TB": "/capacidades/288TB.png",
+        "312 TB": "/capacidades/312TB.png",
+        "336 TB": "/capacidades/336TB.png",
+        "360 TB": "/capacidades/360TB.png",
+        "384 TB": "/capacidades/384TB.png",
+        "408 TB": "/capacidades/408TB.png",
+        "432 TB": "/capacidades/432TB.png",
+        "456 TB": "/capacidades/456TB.png",
+        "480 TB": "/capacidades/480TB.png",
+        "504 TB": "/capacidades/504TB.png",
+      };
+
+      var newSrc = imageMap[selectedCapacity] || "/capacidades/250.png";
+      
+      // Efecto de aparición
+      productImage.style.opacity = "0";
+      productImage.style.transform = "scale(0.95)";
+      productImage.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+      
+      setTimeout(function() {
+        productImage.src = newSrc;
+        productImage.style.opacity = "1";
+        productImage.style.transform = "scale(1)";
+        console.log("Image updated to:", newSrc);
+      }, 150);
+    }
+
+    function updatePrice() {
+      if (!priceDisplay) return;
+
+      var pricesMonthly = JSON.parse(
+        priceDisplay.dataset.pricesMonthly || "[]",
+      );
+      var pricesYearly = JSON.parse(priceDisplay.dataset.pricesYearly || "[]");
+      var perMonth = priceDisplay.dataset.perMonth || "/ mes";
+      var perYear = priceDisplay.dataset.perYear || "/ año";
+
+      var trwq = currentTrwq;
+      console.log("TRWQ:", trwq);
+
+      var capacityIndex = capacitySelect ? capacitySelect.selectedIndex : 0;
+      if (priceDisplay.dataset.initialIndex && capacityIndex === 0) {
+        capacityIndex = parseInt(priceDisplay.dataset.initialIndex);
+      }
+
+      var isYearly = planSelect && planSelect.value === "yearly";
+
+      var prices = isYearly ? pricesYearly : pricesMonthly;
+      var suffix = isYearly ? perYear : perMonth;
+      var basePrice = prices[capacityIndex] || 0;
+      var finalPrice = basePrice * trwq;
+
+      priceDisplay.textContent = "$" + finalPrice.toFixed(2) + suffix;
+
+      // Update precio x TB
+      if (precioXTBDisplay && precioXTBDisplay.dataset.precioXtb) {
+        var preciosXTB = JSON.parse(precioXTBDisplay.dataset.precioXtb);
+        var basePrecioXTB = preciosXTB[capacityIndex] || 0;
+        var finalPrecioXTB = basePrecioXTB * trwq;
+        precioXTBDisplay.textContent = "$" + finalPrecioXTB.toFixed(2);
+      }
+    }
+
+    // Store original capacities for image mapping
+    if (capacitySelect) {
+      var capacities = JSON.stringify([
+        "1 TB",
+        "2 TB",
+        "4 TB",
+        "8 TB",
+        "16 TB",
+        "24 TB",
+        "36 TB",
+        "56 TB",
+        "84 TB",
+        "112 TB",
+        "336 TB",
+        "504 TB",
+      ]);
+      capacitySelect.dataset.originalCapacities = capacities;
+    }
+
+    loadTrwq().then(function () {
+      updatePrice();
+      updateImage();
+      if (planSelect) planSelect.addEventListener("change", updatePrice);
+      if (capacitySelect) {
+        capacitySelect.addEventListener("change", function () {
+          updatePrice();
+          updateImage();
+        });
+      }
+
+      // Check for TRWQ changes periodically
+      setInterval(function () {
+        loadTrwq().then(function () {
+          updatePrice();
+        });
+      }, 5000);
+    });
+  });
+</script>

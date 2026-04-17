@@ -1,0 +1,53 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import Footer from '../../../components/Footer.astro';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
+import AIChatbot from '../../../components/AIChatbot.astro';
+
+const lang = 'en';
+
+const planData = {
+  title: "Personal Account",
+  features: [
+    "1 User",
+    "From 250 GB up to 8 TB Storage",
+    "Unlimited traffic",
+    "Unlimited devices",
+    "All Nextcloud apps without usage limits",
+    "360 days of recycle bin history"
+  ],
+  capacities: ["250 GB", "500 GB", "750 GB", "1 TB", "2 TB", "3 TB", "4 TB", "5 TB", "6 TB", "7 TB", "8 TB"],
+  pricesMonthly: [4, 5.5, 7.2, 8.9, 15.5, 21, 25.9, 29.9, 33.5, 36.9, 39.9],
+  pricesYearly: [40, 55, 72, 89, 155, 210, 259, 299, 335, 369, 399],
+  perMonth: "/ month",
+  perYear: "/ year"
+};
+---
+
+<Layout title="Nubetic - Personal Account" description="Personal Account Plan - Cloud storage for individual use." lang={lang}>
+  <Header lang={lang} />
+  
+  <main>
+    <section class="pt-32 pb-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ProductCard lang={lang} plan={planData} color="blue" />
+      </div>
+    </section>
+  </main>
+  
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} phoneNumber="+1234567890" />
+  <AIChatbot lang={lang} />
+</Layout>
+
+<script>
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
