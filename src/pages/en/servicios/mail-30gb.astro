@@ -7,8 +7,8 @@ import WhatsAppButton from '../../../components/WhatsAppButton.astro';
 import AIChatbot from '../../../components/AIChatbot.astro';
 import { mailPlans } from '../../../data/mailPlans.js';
 
-const plan = mailPlans.en.find(p => p.id === 'mail-30gb');
 const lang = 'en';
+const plan = mailPlans.en.find(p => p.id === 'mail-30gb');
 ---
 
 <Layout title={`Nubetic - ${plan.title}`} description={`Plan ${plan.title} - Zimbra business email.`} lang={lang}>

@@ -1,14 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import MailPlanCard from '../../components/MailPlanCard.astro';
-import Footer from '../../components/Footer.astro';
-import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import AIChatbot from '../../components/AIChatbot.astro';
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import MailPlanCard from '../../../components/MailPlanCard.astro';
+import Footer from '../../../components/Footer.astro';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
+import AIChatbot from '../../../components/AIChatbot.astro';
 import { mailPlans } from '../../../data/mailPlans.js';
 
-const plan = mailPlans.en.find(p => p.id === 'mail-3tb');
 const lang = 'en';
+const plan = mailPlans.en.find(p => p.id === 'mail-3tb');
 ---
 
 <Layout title={`Nubetic - ${plan.title}`} description={`Plan ${plan.title} - Zimbra business email.`} lang={lang}>
