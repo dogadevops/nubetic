@@ -1,0 +1,426 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const translations = {
+  es: {
+    badge: "📧 Correo Corporativo",
+    heroTitle: "Soluciones de Correo Corporativo ",
+    heroTitleHighlight: "Zimbra",
+    heroDescription: "Eleve la productividad de su equipo con una plataforma de comunicación segura, escalable y alojada en la nube de alto rendimiento de Nubetic.",
+    buttonPrimary: "Comenzar Ahora",
+    buttonSecondary: "Ver Demo Zimbra",
+    sslTitle: "Encriptación SSL",
+    sslDescription: "Seguridad total en cada mensaje enviado y recibido.",
+    featuresTitle: "¿Por qué elegir Nubetic Zimbra?",
+    featuresSubtitle: "Tecnología de vanguardia para la gestión de su comunicación corporativa.",
+    features: [
+      {
+        icon: "support_agent",
+        title: "Soporte 24/7 con IA Nubetic",
+        description: "Asistencia intelligente inmediata para resolver consultas técnicas en segundos, respaldada por expertos."
+      },
+      {
+        icon: "person_search",
+        title: "Soporte Personalizado",
+        description: "Ejecutivos dedicados que entienden los requerimientos específicos de su infraestructura empresarial."
+      },
+      {
+        icon: "palette",
+        title: "Personalización de Marca",
+        description: "Logotipos y colores corporativos integrados en la interfaz de usuario para una experiencia cohesiva."
+      }
+    ],
+    pricingTitle: "Planes de Correo Corporativo",
+    vatNote: "Los Precios de Referencia, no incluyen IVA.",
+    plansTitle: "Nuestros Planes",
+    plansSubtitle: "Elige el plan que mejor se adapte a tus necesidades",
+    buttonViewPlan: "Ver Plan",
+    recommended: "Recomendado",
+    comparisonTitle: "¿Necesitas una solución personalizada?",
+    comparisonDescription: "Nuestro equipo de arquitectura cloud puede diseñar una infraestructura de correo a la medida de sus necesidades de cumplimiento y almacenamiento.",
+    comparisonButton: "Hablar con un experto",
+    zimbraTitle: "¿Por qué Zimbra?",
+    zimbraFeatures: [
+      {
+        icon: "business",
+        title: "Líder del Mercado",
+        description: "Zimbra es utilizado por más de 200,000 empresas en 180 países, siendo una de las plataformas de correo corporativo más confiables del mundo."
+      },
+      {
+        icon: "security",
+        title: "Seguridad Avanzada",
+        description: "Cifrado SSL/TLS, autenticación de dos factores, protección contra spam y malware, y filtros de contenido cumplimiento empresarial."
+      },
+      {
+        icon: "cloud",
+        title: "Soberanía Digital",
+        description: "Sus datos almacenados en servidores desplegados en más de 140 países a nivel mundial."
+      },
+      {
+        icon: "group",
+        title: "Colaboración Total",
+        description: "Calendarios compartidos, libreta de direcciones unificada, tareas conjuntas y carpetas compartidas para equipos de trabajo."
+      },
+      {
+        icon: "sync",
+        title: "Sincronización Multi-Dispositivo",
+        description: "Accede a tu correo desde cualquier dispositivo con ActiveSync. Emails, calendarios y contactos siempre sincronizados."
+      },
+      {
+        icon: "storage",
+        title: "Almacenamiento Escalable",
+        description: "Desde 30GB hasta 3TB por dominio. Planeación de capacidad sin límites para crecer con tu empresa."
+      }
+    ],
+    plans: [
+      {
+        name: "Mail Corporativo 30GB",
+        subtitle: "Ideal para profesionales independientes",
+        icon: "📧",
+        color: "blue",
+        features: ["1 dominio", "1 usuario", "30 GB Espacio"],
+        href: "/servicios/mail-30gb"
+      },
+      {
+        name: "Mail Corporativo 55GB",
+        subtitle: "Perfecto para pequeñas necesidades",
+        icon: "📧",
+        color: "blue",
+        features: ["1 dominio", "1 usuario", "55 GB Espacio"],
+        href: "/servicios/mail-55gb"
+      },
+      {
+        name: "Mail Corporativo 500GB",
+        subtitle: "Recomendado para equipos",
+        icon: "📧",
+        color: "purple",
+        features: ["1 dominio", "1 administrador", "Usuarios ilimitados", "500 GB Espacio"],
+        href: "/servicios/mail-500gb",
+        featured: true
+      },
+      {
+        name: "Mail Corporativo 1TB",
+        subtitle: "Para empresas en crecimiento",
+        icon: "📧",
+        color: "indigo",
+        features: ["1 dominio", "1 administrador", "Usuarios ilimitados", "1 TB Espacio"],
+        href: "/servicios/mail-1tb"
+      },
+      {
+        name: "Servidor Email 3TB",
+        subtitle: "Máxima capacidad",
+        icon: "🖥️",
+        color: "violet",
+        features: ["Dominios ilimitados", "Administradores ilim.", "Usuarios ilimitados", "3 TB Espacio"],
+        href: "/servicios/mail-3tb"
+      }
+    ]
+  },
+  en: {
+    badge: "📧 Corporate Email",
+    heroTitle: "Corporate Email Solutions ",
+    heroTitleHighlight: "Zimbra",
+    heroDescription: "Elevate your team's productivity with a secure, scalable, high-performance cloud email platform from Nubetic.",
+    buttonPrimary: "Get Started",
+    buttonSecondary: "View Zimbra Demo",
+    sslTitle: "SSL Encryption",
+    sslDescription: "Total security in every message sent and received.",
+    featuresTitle: "Why choose Nubetic Zimbra?",
+    featuresSubtitle: "State-of-the-art technology for your corporate communication management.",
+    features: [
+      {
+        icon: "support_agent",
+        title: "24/7 Support with Nubetic AI",
+        description: "Immediate intelligent assistance to resolve technical queries in seconds, backed by experts."
+      },
+      {
+        icon: "person_search",
+        title: "Personalized Support",
+        description: "Dedicated executives who understand your enterprise infrastructure specific requirements."
+      },
+      {
+        icon: "palette",
+        title: "Brand Customization",
+        description: "Corporate logos and colors integrated into the user interface for a cohesive experience."
+      }
+    ],
+    pricingTitle: "Business Email Plans",
+    vatNote: "Reference Prices do not include VAT.",
+    plansTitle: "Our Plans",
+    plansSubtitle: "Choose the plan that best suits your needs",
+    buttonViewPlan: "View Plan",
+    recommended: "Recommended",
+    comparisonTitle: "Need a customized solution?",
+    comparisonDescription: "Our cloud architecture team can design a custom email infrastructure tailored to your compliance and storage needs.",
+    comparisonButton: "Talk to an Expert",
+    zimbraTitle: "Why Zimbra?",
+    zimbraFeatures: [
+      {
+        icon: "business",
+        title: "Market Leader",
+        description: "Zimbra is used by more than 200,000 companies in 180 countries, making it one of the most reliable corporate email platforms in the world."
+      },
+      {
+        icon: "security",
+        title: "Advanced Security",
+        description: "SSL/TLS encryption, two-factor authentication, spam and malware protection, and enterprise compliance content filters."
+      },
+      {
+        icon: "cloud",
+        title: "Digital Sovereignty",
+        description: "Your data is stored on servers deployed in more than 140 countries worldwide."
+      },
+      {
+        icon: "group",
+        title: "Total Collaboration",
+        description: "Shared calendars, unified address book, joint tasks and shared folders for work teams."
+      },
+      {
+        icon: "sync",
+        title: "Multi-Device Sync",
+        description: "Access your email from any device with ActiveSync. Emails, calendars and contacts always synchronized."
+      },
+      {
+        icon: "storage",
+        title: "Scalable Storage",
+        description: "From 30GB to 3TB per domain. Capacity planning without limits to grow with your company."
+      }
+    ],
+    plans: [
+      {
+        name: "Corporate Email 30GB",
+        subtitle: "Ideal for independent professionals",
+        icon: "📧",
+        color: "blue",
+        features: ["1 domain", "1 user", "30 GB Storage"],
+        href: "/en/servicios/mail-30gb"
+      },
+      {
+        name: "Corporate Email 55GB",
+        subtitle: "Perfect for small needs",
+        icon: "📧",
+        color: "blue",
+        features: ["1 domain", "1 user", "55 GB Storage"],
+        href: "/en/servicios/mail-55gb"
+      },
+      {
+        name: "Corporate Email 500GB",
+        subtitle: "Recommended for teams",
+        icon: "📧",
+        color: "purple",
+        features: ["1 domain", "1 administrator", "Unlimited users", "500 GB Storage"],
+        href: "/en/servicios/mail-500gb",
+        featured: true
+      },
+      {
+        name: "Corporate Email 1TB",
+        subtitle: "For growing businesses",
+        icon: "📧",
+        color: "indigo",
+        features: ["1 domain", "1 administrator", "Unlimited users", "1 TB Storage"],
+        href: "/en/servicios/mail-1tb"
+      },
+      {
+        name: "Email Server 3TB",
+        subtitle: "Maximum capacity",
+        icon: "🖥️",
+        color: "violet",
+        features: ["Unlimited domains", "Unlimited admins", "Unlimited users", "3 TB Storage"],
+        href: "/en/servicios/mail-3tb"
+      }
+    ]
+  }
+};
+
+const t = translations[lang];
+const plans = t.plans;
+
+const colorClasses = {
+  blue: {
+    bg: "bg-blue-100 dark:bg-blue-900/30",
+    text: "text-blue-600 dark:text-blue-400",
+    border: "border-blue-200 dark:border-blue-800",
+    button: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
+    icon: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+  },
+  purple: {
+    bg: "bg-purple-100 dark:bg-purple-900/30",
+    text: "text-purple-600 dark:text-purple-400",
+    border: "border-purple-200 dark:border-purple-800",
+    button: "bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600",
+    icon: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
+  },
+  indigo: {
+    bg: "bg-indigo-100 dark:bg-indigo-900/30",
+    text: "text-indigo-600 dark:text-indigo-400",
+    border: "border-indigo-200 dark:border-indigo-800",
+    button: "bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600",
+    icon: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+  },
+  violet: {
+    bg: "bg-violet-100 dark:bg-violet-900/30",
+    text: "text-violet-600 dark:text-violet-400",
+    border: "border-violet-200 dark:border-violet-800",
+    button: "bg-violet-600 hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600",
+    icon: "bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400"
+  }
+};
+
+const zimbraIcons: Record<string, string> = {
+  support_agent: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10 17.52 12 17.52 12 12 6.48 12 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 3-1.34-3-3 3zm1.32 9.56c-1.26-.63-2.76-1.39-4.32-1.56v2.5c1.01.14 2.09.66 3.09 1.11l1.23-.55z",
+  person_search: "M11 7c1.65 0 3-1.35 3-3s-1.35-3-3-3-3 1.35-3 3 1.35 3 3 3zm2.94 7.89c-.51-.37-2.27-.89-4.94-.89-2.67 0-4.43.52-4.94.89-.52.36-.91 1.56-.91 2.11v1h11v-1c0-.55-.39-1.75-.91-2.11z",
+  palette: "M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 11.5 6.5 11.5z",
+  business: "M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2zm0-4h-2v2h2v-2zm0-4h-2v2h2v-2zm0-4h-2v2h2v-2z",
+  security: "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z",
+  cloud: "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z",
+  group: "M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z",
+  sync: "M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 11.37 20 9.86 20 8c0-4.41-3.59-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8l-1.46-1.46C4.46 12.63 4 14.14 4 16c0 4.41 3.59 8 8 8v3l4-4-4-4v3z",
+  storage: "M2 20h20v-4H2v4zm0-2h20v-4H2v4zm2-8h2v2H4v-2zm0 4h2v2H4v-2zm0-4h2v2H4v-2zm8 4h2v2h-2v-2zm0-4h2v2h-2v-2zm0-4h2v2h-2v-2zm0-4h20v4H2v-4z"
+};
+---
+
+<section class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 pt-32 pb-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Badge -->
+    <div class="mb-6 flex justify-center reveal">
+      <span class="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+        {t.badge}
+      </span>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      <div class="space-y-6 reveal">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-none">
+          {t.heroTitle}<span class="text-primary">{t.heroTitleHighlight}</span>
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-xl">
+          {t.heroDescription}
+        </p>
+      </div>
+      <div class="relative reveal">
+       
+          <div class="bg-blue-600 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row items-center mb-20">
+              <img src="/Zimbra.jpg"  />
+         
+          </div>
+      
+        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 hidden md:block max-w-[240px]">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+            </div>
+            <div class="font-semibold text-sm text-gray-900">{t.sslTitle}</div>
+          </div>
+          <p class="text-sm text-gray-500 leading-tight">{t.sslDescription}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Zimbra Section -->
+    <div class="mb-20 reveal">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t.zimbraTitle}</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {t.zimbraFeatures.map((feature, index) => (
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 space-y-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={zimbraIcons[feature.icon] || zimbraIcons.storage}/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{feature.title}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+   
+
+    <!-- Features Bento Grid -->
+    <div class="mb-20 reveal">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t.featuresTitle}</h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{t.featuresSubtitle}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {t.features.map((feature) => (
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 space-y-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={zimbraIcons[feature.icon] || zimbraIcons.storage}/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{feature.title}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="mb-16 reveal">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{t.pricingTitle}</h2>
+        <p class="text-gray-600 dark:text-gray-400">{t.plansSubtitle}</p>
+      </div>
+
+      <!-- Plans Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-1 max-w-7xl mx-auto">
+        {plans.map((plan, index) => {
+          const colors = colorClasses[plan.color as keyof typeof colorClasses];
+          return (
+            <div 
+              class={`relative group rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal ${plan.featured ? 'ring-2 ring-blue-600' : ''}`}
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              {plan.featured && (
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                  {t.recommended}
+                </div>
+              )}
+              
+              <!-- Plan Icon -->
+              <div class={`w-14 h-14 ${colors.icon} rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform group-hover:scale-110`}>
+                {plan.icon}
+              </div>
+
+              <!-- Plan Title -->
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{plan.name}</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{plan.subtitle}</p>
+
+              <!-- Features Preview -->
+              <ul class="space-y-2 mb-6">
+                {plan.features.map(feature => (
+                  <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span class="line-clamp-1">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- CTA Button -->
+              <a
+                href={plan.href}
+                class={`block w-full text-center py-3 px-4 rounded-xl text-white font-semibold ${colors.button} transition-all shadow-md hover:shadow-lg`}
+              >
+                {t.buttonViewPlan}
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

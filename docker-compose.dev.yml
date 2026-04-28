@@ -1,0 +1,34 @@
+services:
+  nubetic:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: nubetic-app
+    restart: unless-stopped
+    command: npm run dev
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=development
+      - HOST=0.0.0.0
+      - PORT=4321
+      - TRWQ_API_KEY=${TRWQ_API_KEY}
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./astro.config.mjs:/app/astro.config.mjs
+      - ./tailwind.config.js:/app/tailwind.config.js
+      - ./package.json:/app/package.json
+      - ./src/data:/app/src/data
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:4321/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - nubetic-network
+
+networks:
+  nubetic-network:
+    driver: bridge

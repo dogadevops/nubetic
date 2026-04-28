@@ -10,207 +10,41 @@ const translations = {
     badge: "🚀 Servicios",
     title: "Soluciones en la nube para cada necesidad",
     description: "Ofrecemos una gama completa de servicios de almacenamiento y gestión de datos en la nube, diseñados para impulsar tu productividad y proteger tu información.",
-    plansTitle: "Nuestros Planes",
-    plansSubtitle: "Elige el plan que mejor se adapte a tus necesidades",
-    // Plan 1 - Cuenta Personal
-    plan1: {
-      title: "Cuenta Personal",
-      subtitle: "Ideal para uso individual",
-      icon: "👤",
-      color: "blue",
-      features: [
-        "1 Usuario",
-        "Desde 250 GB hasta 8 TB de Almacenamiento",
-        "Tráfico ilimitado",
-        "Dispositivos ilimitados",
-        "Todas las aplicaciones del entorno Nextcloud sin límite de uso",
-        "360 días de historial de papelera de reciclaje"
-      ],
-      href: "/servicios/cuenta-personal"
-    },
-    // Plan 2 - Grupo de Trabajo
-    plan2: {
-      title: "Grupo de Trabajo",
-      subtitle: "Perfecto para equipos pequeños",
-      icon: "👥",
-      color: "purple",
-      features: [
-        "1 Administrador",
-        "Usuarios ilimitados",
-        "Desde 250 GB hasta 50 TB de Almacenamiento",
-        "Tráfico ilimitado",
-        "Dispositivos ilimitados",
-        "Sistema de conferencia sin límite de usuarios y tiempo",
-        "365 días de historial de papelera de reciclaje",
-        "1 Grupo de Trabajo ilimitado",
-        "Soporte de primer nivel 24/7 con IA Backup24-7",
-        "Soporte personalizado con operador especializado"
-      ],
-      href: "/servicios/grupodetrabajo"
-    },
-    // Plan 3 - Empresarial
-    plan3: {
-      title: "Empresarial",
-      subtitle: "Para empresas en crecimiento",
-      icon: "🏢",
-      color: "indigo",
-      features: [
-        "Servidor Dedicado con IP Real",
-        "Administradores, grupos y usuarios ilimitados",
-        "Desde 1 TB hasta 50 TB de Almacenamiento",
-        "Tráfico ilimitado",
-        "Dispositivos ilimitados",
-        "Personalización al 100%",
-        "Sistema de conferencia sin límite de usuarios y tiempo",
-        "365 días de historial de papelera de reciclaje",
-        "Todas las aplicaciones del entorno Nextcloud",
-        "Soporte de primer nivel 24/7 con IA Backup24-7",
-        "Soporte personalizado con operador especializado"
-      ],
-      href: "/servicios/empresarial"
-    },
-    // Plan 4 - Empresarial+
-    plan4: {
-      title: "Empresarial+",
-      subtitle: "Máxima potencia y recursos",
-      icon: "🚀",
-      color: "violet",
-      features: [
-        "Servidor Dedicado con IP Real",
-        "Administradores, grupos y usuarios ilimitados",
-        "Desde 100 TB hasta 792 TB de Almacenamiento",
-        "Tráfico ilimitado",
-        "Dispositivos ilimitados",
-        "Personalización al 100%",
-        "Sistema de conferencia sin límite de usuarios y tiempo",
-        "365 días de historial de papelera de reciclaje",
-        "Todas las aplicaciones del entorno Nextcloud",
-        "Soporte de primer nivel 24/7 con IA Backup24-7",
-        "Soporte personalizado con operador especializado"
-      ],
-      href: "/servicios/empresarial-2"
-    }
+    subtitle: "Elige el servicio que necesitas",
+    storageTitle: "Almacenamiento y Sincronización",
+    storageSubtitle: "Powered by Nextcloud-OVH",
+    storageDescription: "Almacenamiento seguro, sincronización de archivos, colaboración en tiempo real y aplicaciones de productividad. Todo lo que necesitas para trabajar en equipo.",
+    storageFeatures: ["Desde 250 GB hasta 504 TB", "Sincronización multi-dispositivo", "Colaboración en tiempo real", "Apps de productividad Nextcloud", "Soporte 24/7 con IA"],
+    storageIcon: "☁️",
+    mailTitle: "Correo Corporativo",
+    mailSubtitle: "Powered by Zimbra",
+    mailDescription: "Plataforma de correo empresarial completa con calendario, contactos, tareas y colaboración. La solución profesional que tu empresa necesita.",
+    mailFeatures: ["Desde 30 GB hasta 3 TB", "Dominios ilimitados", "Calendario y contactos compartidos", "Seguridad avanzada SSL/TLS", "Antispam y antivirus"],
+    mailIcon: "📧",
+    buttonStorage: "Ver Planes",
+    buttonMail: "Ver Planes"
   },
   en: {
     badge: "🚀 Services",
     title: "Cloud solutions for every need",
     description: "We offer a complete range of cloud storage and data management services, designed to boost your productivity and protect your information.",
-    plansTitle: "Our Plans",
-    plansSubtitle: "Choose the plan that best suits your needs",
-    plan1: {
-      title: "Personal Account",
-      subtitle: "Ideal for individual use",
-      icon: "👤",
-      color: "blue",
-      features: [
-        "1 User",
-        "From 250 GB up to 8 TB Storage",
-        "Unlimited traffic",
-        "Unlimited devices",
-        "All Nextcloud apps without usage limits",
-        "360 days of recycle bin history"
-      ],
-      href: "/en/servicios/cuenta-personal"
-    },
-    plan2: {
-      title: "Work Group",
-      subtitle: "Perfect for small teams",
-      icon: "👥",
-      color: "purple",
-      features: [
-        "1 Administrator",
-        "Unlimited users",
-        "From 250 GB to 50 TB Storage",
-        "Unlimited traffic",
-        "Unlimited devices",
-        "Conference system without user or time limits",
-        "365 days of recycle bin history",
-        "Unlimited Work Groups",
-        "24/7 first-level support with Backup24-7 AI",
-        "Personalized support with specialized operator"
-      ],
-      href: "/en/servicios/grupodetrabajo"
-    },
-    plan3: {
-      title: "Enterprise",
-      subtitle: "For growing businesses",
-      icon: "🏢",
-      color: "indigo",
-      features: [
-        "Dedicated Server with Real IP",
-        "Unlimited administrators, groups and users",
-        "From 1 TB to 50 TB Storage",
-        "Unlimited traffic",
-        "Unlimited devices",
-        "100% Customization",
-        "Conference system without user or time limits",
-        "365 days of recycle bin history",
-        "All Nextcloud apps included",
-        "24/7 first-level support with Backup24-7 AI",
-        "Personalized support with specialized operator"
-      ],
-      href: "/en/servicios/empresarial"
-    },
-    plan4: {
-      title: "Enterprise+",
-      subtitle: "Maximum power and resources",
-      icon: "🚀",
-      color: "violet",
-      features: [
-        "Dedicated Server with Real IP",
-        "Unlimited administrators, groups and users",
-        "From 100 TB to 792 TB Storage",
-        "Unlimited traffic",
-        "Unlimited devices",
-        "100% Customization",
-        "Conference system without user or time limits",
-        "365 days of recycle bin history",
-        "All Nextcloud apps included",
-        "24/7 first-level support with Backup24-7 AI",
-        "Personalized support with specialized operator"
-      ],
-      href: "/en/servicios/empresarial-2"
-    }
+    subtitle: "Choose the service you need",
+    storageTitle: "Storage and Sync",
+    storageSubtitle: "Powered by Nextcloud-OVH",
+    storageDescription: "Secure file storage, synchronization, real-time collaboration and productivity applications. Everything you need to work as a team.",
+    storageFeatures: ["From 250 GB to 504 TB", "Multi-device sync", "Real-time collaboration", "Nextcloud productivity apps", "24/7 Support with AI"],
+    storageIcon: "☁️",
+    mailTitle: "Business Email",
+    mailSubtitle: "Powered by Zimbra",
+    mailDescription: "Complete business email platform with calendar, contacts, tasks and collaboration. The professional solution your company needs.",
+    mailFeatures: ["From 30 GB to 3 TB", "Unlimited domains", "Shared calendar and contacts", "Advanced SSL/TLS security", "Antispam and antivirus"],
+    mailIcon: "📧",
+    buttonStorage: "View Plans",
+    buttonMail: "View Plans"
   }
 };
 
 const t = translations[lang];
-const plans = [t.plan1, t.plan2, t.plan3, t.plan4];
-
-const colorClasses = {
-  blue: {
-    bg: "bg-blue-100 dark:bg-blue-900/30",
-    text: "text-blue-600 dark:text-blue-400",
-    border: "border-blue-200 dark:border-blue-800",
-    button: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
-    gradient: "from-blue-600 to-blue-700",
-    icon: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
-  },
-  purple: {
-    bg: "bg-purple-100 dark:bg-purple-900/30",
-    text: "text-purple-600 dark:text-purple-400",
-    border: "border-purple-200 dark:border-purple-800",
-    button: "bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600",
-    gradient: "from-purple-600 to-purple-700",
-    icon: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
-  },
-  indigo: {
-    bg: "bg-indigo-100 dark:bg-indigo-900/30",
-    text: "text-indigo-600 dark:text-indigo-400",
-    border: "border-indigo-200 dark:border-indigo-800",
-    button: "bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600",
-    gradient: "from-indigo-600 to-indigo-700",
-    icon: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
-  },
-  violet: {
-    bg: "bg-violet-100 dark:bg-violet-900/30",
-    text: "text-violet-600 dark:text-violet-400",
-    border: "border-violet-200 dark:border-violet-800",
-    button: "bg-violet-600 hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600",
-    gradient: "from-violet-600 to-violet-700",
-    icon: "bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400"
-  }
-};
 ---
 
 <section class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 pt-32 pb-20">
@@ -225,7 +59,7 @@ const colorClasses = {
 
     <!-- Title & Description -->
     <div class="mb-16 text-center reveal">
-      <h1 class="mb-6 text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl">
+      <h1 class="mb-6 text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
         {t.title}
       </h1>
       <p class="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-300">
@@ -233,69 +67,95 @@ const colorClasses = {
       </p>
     </div>
 
-    <!-- Plans Section -->
-    <div class="mb-16 reveal">
+    <!-- Service Selection -->
+    <div class="mb-12 reveal">
       <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{t.plansTitle}</h2>
-        <p class="text-gray-600 dark:text-gray-400">{t.plansSubtitle}</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{t.subtitle}</h2>
       </div>
 
-      <!-- Plans Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {plans.map((plan, index) => {
-          const colors = colorClasses[plan.color as keyof typeof colorClasses];
-          return (
-            <div 
-              class="group relative rounded-2xl bg-white dark:bg-gray-800 border {colors.border} p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal"
-              style={`animation-delay: ${index * 100}ms`}
-            >
-              <!-- Popular Badge (for plan 4) -->
-              {index === 3 && (
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span class="bg-gradient-to-r from-violet-600 to-purple-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
-                    MÁS POPULAR
-                  </span>
-                </div>
-              )}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- Storage Card -->
+        <div class="group relative rounded-2xl bg-white dark:bg-gray-800 p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal">
+        
+          
+          <!-- Title -->
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            {t.storageIcon}
+            {t.storageTitle}</h3>
+          
+          <!-- Badge -->
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-xs font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 mb-4">
+            {t.storageSubtitle}
+          </span>
 
-              <!-- Plan Icon -->
-              <div class={`w-14 h-14 ${colors.icon} rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform group-hover:scale-110`}>
-                {plan.icon}
-              </div>
+          <!-- Description -->
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            {t.storageDescription}
+          </p>
 
-              <!-- Plan Title -->
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{plan.title}</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{plan.subtitle}</p>
+          <!-- Features -->
+          <ul class="space-y-2 mb-8">
+            {t.storageFeatures.map(feature => (
+              <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
 
-              <!-- Features Preview -->
-              <ul class="space-y-2 mb-6">
-                {plan.features.slice(0, 4).map(feature => (
-                  <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                    <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span class="line-clamp-1">{feature}</span>
-                  </li>
-                ))}
-                {plan.features.length > 4 && (
-                  <li class="text-sm text-gray-400 dark:text-gray-500 italic">
-                    + {plan.features.length - 4} más...
-                  </li>
-                )}
-              </ul>
+          <!-- CTA Button -->
+          <a
+            href="/servicios/storage"
+            class="block w-full text-center py-4 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all shadow-md hover:shadow-lg"
+          >
+            {t.buttonStorage}
+          </a>
+        </div>
 
-              <!-- CTA Button -->
-              <a
-                href={plan.href}
-                class={`block w-full text-center py-3 px-4 rounded-xl text-white font-semibold ${colors.button} transition-all shadow-md hover:shadow-lg`}
-              >
-                Ver Plan
-              </a>
-            </div>
-          );
-        })}
+        <!-- Mail Card -->
+        <div class="group relative rounded-2xl bg-white dark:bg-gray-800 p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal">
+          <!-- Title -->
+
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            {t.mailIcon}
+            {t.mailTitle}
+          </h3>
+          
+          
+          <!-- Badge -->
+          <span class="inline-block px-3 py-1 rounded-full bg-purple-100 text-xs font-medium text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 mb-4">
+            {t.mailSubtitle}
+          </span>
+
+          <!-- Description -->
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            {t.mailDescription}
+          </p>
+
+          <!-- Features -->
+          <ul class="space-y-2 mb-8">
+            {t.mailFeatures.map(feature => (
+              <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- CTA Button -->
+          <a
+            href="/servicios/mail"
+            class="block w-full text-center py-4 px-6 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-all shadow-md hover:shadow-lg"
+          >
+            {t.buttonMail}
+          </a>
+        </div>
       </div>
     </div>
-
   </div>
 </section>

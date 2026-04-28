@@ -6,16 +6,18 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^7.0.0",
+    "@astrojs/node": "^10.0.5",
+    "@astrojs/vercel": "^10.0.4",
     "@tailwindcss/vite": "^4.0.0",
     "@vercel/kv": "^3.0.0",
     "astro": "^6.1.4",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "vite": "^5.4.0"
   }
 }

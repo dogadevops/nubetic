@@ -1,0 +1,188 @@
+---
+interface MailPlanData {
+  title: string;
+  titleYear: string;
+  titleMonth: string;
+  features: string[];
+  priceYearly: number;
+  priceMonthly: number;
+  perMonth: string;
+  perYear: string;
+}
+
+interface Props {
+  lang?: string;
+  plan: MailPlanData;
+  color?: "blue" | "purple" | "indigo" | "violet";
+}
+
+const { lang = "es", plan, color = "blue" } = Astro.props;
+
+const colorClasses = {
+  blue: {
+    gradient: "from-blue-600 to-blue-800",
+    button: "bg-blue-600 hover:bg-blue-700",
+    accent: "text-blue-600 dark:text-blue-400",
+    border: "border-blue-200 dark:border-blue-800",
+  },
+  purple: {
+    gradient: "from-purple-600 to-purple-800",
+    button: "bg-purple-600 hover:bg-purple-700",
+    accent: "text-purple-600 dark:text-purple-400",
+    border: "border-purple-200 dark:border-purple-800",
+  },
+  indigo: {
+    gradient: "from-indigo-600 to-indigo-800",
+    button: "bg-indigo-600 hover:bg-indigo-700",
+    accent: "text-indigo-600 dark:text-indigo-400",
+    border: "border-indigo-200 dark:border-indigo-800",
+  },
+  violet: {
+    gradient: "from-violet-600 to-violet-800",
+    button: "bg-violet-600 hover:bg-violet-700",
+    accent: "text-violet-600 dark:text-violet-400",
+    border: "border-violet-200 dark:border-violet-800",
+  },
+};
+
+const colors = colorClasses[color];
+
+const translations = {
+  es: {
+    selectPlan: "Tipo de Plan",
+    monthly: "Mensual",
+    yearly: "Anual",
+    buyNow: lang === "es" ? "Comprar ahora" : "Buy now",
+  },
+  en: {
+    selectPlan: "Plan Type",
+    monthly: "Monthly",
+    yearly: "Annual",
+    buyNow: "Buy now",
+  }
+};
+
+const t = translations[lang];
+---
+
+<div class="reveal bg-gray-50 dark:bg-gray-900 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16">
+  <div class="mx-auto max-w-5xl bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 sm:p-8 lg:p-10">
+    
+    <!-- Product Grid -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
+      
+      <!-- Product Image (Left) -->
+      <div class="w-full lg:w-1/3 reveal">
+        <div class="rounded-xl flex flex-col items-center justify-center overflow-hidden shadow-lg bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 p-8" style="min-height: 400px;">
+          <div class="text-6xl mb-4">📧</div>
+          <div class="text-xl font-bold text-gray-800 dark:text-white mb-2">Zimbra</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400">Corporate Email</div>
+        </div>
+      </div>
+
+      <!-- Product Details (Right) -->
+      <div class="w-full lg:w-2/3 reveal">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+          {plan.title}
+        </h2>
+
+        <ul class="text-sm space-y-2 mb-6 text-gray-600 dark:text-gray-400 leading-relaxed">
+          {plan.features.map((feature) => (
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+
+        <!-- Selectors -->
+        <div class="space-y-4 mb-6">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+              {t.selectPlan}
+            </label>
+            <select
+              id="plan-select"
+              class="w-full border border-gray-200 dark:border-gray-600 p-3 text-sm bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg transition-all cursor-pointer"
+            >
+              <option value="monthly">{t.monthly}</option>
+              <option value="yearly">{t.yearly}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Price and Button -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+          <div>
+            <span
+              id="product-price"
+              class="text-3xl font-bold text-gray-800 dark:text-white"
+              data-price-monthly={plan.priceMonthly}
+              data-price-yearly={plan.priceYearly}
+              data-per-month={plan.perMonth}
+              data-per-year={plan.perYear}
+            >
+              ${plan.priceMonthly.toFixed(2)}{plan.perMonth}
+            </span>
+          </div>
+        </div>
+        <button
+          class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-sm transition-all shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+        >
+          {t.buyNow}
+        </button>
+      </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="mt-12 reveal">
+      <h3 class="border-t-2 border-blue-600 inline-block pt-3 font-bold text-sm mb-6 text-gray-800 dark:text-white uppercase">
+        {lang === "es" ? "Información adicional" : "Additional Information"}
+      </h3>
+      <table class="w-full border-collapse border border-gray-200 dark:border-gray-600 text-sm rounded-lg overflow-hidden">
+        <tbody>
+          <tr class="bg-gray-50 dark:bg-gray-700/50">
+            <td class="border border-gray-200 dark:border-gray-600 p-4 font-semibold text-gray-700 dark:text-gray-300 w-1/3">
+              {t.selectPlan}
+            </td>
+            <td class="border border-gray-200 dark:border-gray-600 p-4 italic text-gray-600 dark:text-gray-400">
+              {t.monthly}, {t.yearly}
+            </td>
+          </tr>
+          <tr>
+            <td class="border border-gray-200 dark:border-gray-600 p-4 font-semibold text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50" colspan="2">
+              {lang === "es" ? "Precios no incluyen IVA." : "Prices do not include VAT."}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var planSelect = document.getElementById("plan-select");
+    var priceDisplay = document.getElementById("product-price");
+
+    function updatePrice() {
+      if (!priceDisplay || !planSelect) return;
+
+      var isYearly = planSelect.value === "yearly";
+      var price = isYearly 
+        ? parseFloat(priceDisplay.dataset.priceYearly) 
+        : parseFloat(priceDisplay.dataset.priceMonthly);
+      var suffix = isYearly 
+        ? priceDisplay.dataset.perYear 
+        : priceDisplay.dataset.perMonth;
+
+      priceDisplay.textContent = "$" + price.toFixed(2) + suffix;
+    }
+
+    if (planSelect) {
+      planSelect.addEventListener("change", updatePrice);
+    }
+  });
+</script>

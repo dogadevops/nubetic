@@ -1,0 +1,318 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const translations = {
+  es: {
+    badge: "💾 Almacenamiento",
+    badgeSubtitle: "Powered by Nextcloud-OVH",
+    title: "Almacenamiento y Sincronización ",
+    titleHighlight: "en la Nube",
+    description: "Eleve la productividad de su equipo con una plataforma de almacenamiento seguro, escalable y de alto rendimientoalojada en la nube de Nubetic.",
+    buttonPrimary: "Comenzar Ahora",
+    buttonSecondary: "Ver Demo",
+    sslTitle: "Encriptación SSL",
+    sslDescription: "Seguridad total en cada archivo almacenado.",
+    featuresTitle: "¿Por qué elegir Nubetic Cloud Storage?",
+    featuresSubtitle: "Tecnología de vanguardia para la gestión de sus datos.",
+    features: [
+      {
+        icon: "support_agent",
+        title: "Soporte 24/7 con IA Nubetic",
+        description: "Asistencia inteligente inmediata para resolver consultas técnicas en segundos, respaldada por expertos."
+      },
+      {
+        icon: "person_search",
+        title: "Soporte Personalizado",
+        description: "Ejecutivos dedicados que entienden los requerimientos específicos de su infraestructura empresarial."
+      },
+      {
+        icon: "palette",
+        title: "Personalización de Marca",
+        description: "Logotipos y colores corporativos integrados en la interfaz para una experiencia cohesiva."
+      }
+    ],
+    nextcloudTitle: "¿Por qué Nextcloud-OVH?",
+    nextcloudFeatures: [
+      {
+        icon: "business",
+        title: "Líder del Mercado",
+        description: "Nextcloud es utilizado por más de 400,000 empresas en 190 países, siendo una de las plataformas de almacenamiento más confiables del mundo."
+      },
+      {
+        icon: "security",
+        title: "Seguridad Avanzada",
+        description: "Cifrado SSL/TLS, autenticación de dos factores, protección contra malware y filtros de contenido para cumplimiento empresarial."
+      },
+      {
+        icon: "cloud",
+        title: "Soberanía Digital",
+        description: "Sus datos almacenados en servidores dentro de Argentina con certificación ISO 27001. Cumplimiento GDPR y leyes locales."
+      },
+      {
+        icon: "group",
+        title: "Colaboración Total",
+        description: "Documentos compartidos, calendario unificado, tareas conjuntas y carpetas compartidas para equipos de trabajo."
+      },
+      {
+        icon: "sync",
+        title: "Sincronización Multi-Dispositivo",
+        description: "Accede a tus archivos desde cualquier dispositivo. Archivos siempre sincronizados en todos tus dispositivos."
+      },
+      {
+        icon: "storage",
+        title: "Almacenamiento Escalable",
+        description: "Desde 250GB hasta 504TB por usuario. Planeación de capacidad sin límites para crecer con tu empresa."
+      }
+    ],
+    pricingTitle: "Planes de Almacenamiento",
+    pricingSubtitle: "Facturación Anual",
+    pricingDiscount: "Ahorre hasta 20%",
+    vatNote: "Los Precios de Referencia, no incluyen IVA.",
+    plansTitle: "Nuestros Planes",
+    plansSubtitle: "Elige el plan que mejor se adapte a tus necesidades",
+    buttonViewPlan: "Ver Plan",
+    recommended: "Recomendado",
+    comparisonTitle: "¿Necesitas una solución personalizada?",
+    comparisonDescription: "Nuestro equipo de arquitectura cloud puede diseñar una infraestructura de almacenamiento a la medida de sus necesidades.",
+    comparisonButton: "Hablar con un experto"
+  },
+  en: {
+    badge: "💾 Storage",
+    badgeSubtitle: "Powered by Nextcloud-OVH",
+    title: "Cloud Storage and Sync ",
+    titleHighlight: "in the Cloud",
+    description: "Elevate your team's productivity with a secure, scalable, high-performance cloud storage platform from Nubetic.",
+    buttonPrimary: "Get Started",
+    buttonSecondary: "View Demo",
+    sslTitle: "SSL Encryption",
+    sslDescription: "Total security in every file stored.",
+    featuresTitle: "Why choose Nubetic Cloud Storage?",
+    featuresSubtitle: "State-of-the-art technology for data management.",
+    features: [
+      {
+        icon: "support_agent",
+        title: "24/7 Support with Nubetic AI",
+        description: "Immediate intelligent assistance to resolve technical queries in seconds, backed by experts."
+      },
+      {
+        icon: "person_search",
+        title: "Personalized Support",
+        description: "Dedicated executives who understand your enterprise infrastructure specific requirements."
+      },
+      {
+        icon: "palette",
+        title: "Brand Customization",
+        description: "Corporate logos and colors integrated into the interface for a cohesive experience."
+      }
+    ],
+    nextcloudTitle: "Why Nextcloud-OVH?",
+    nextcloudFeatures: [
+      {
+        icon: "business",
+        title: "Market Leader",
+        description: "Nextcloud is used by more than 400,000 companies in 190 countries, making it one of the most reliable storage platforms in the world."
+      },
+      {
+        icon: "security",
+        title: "Advanced Security",
+        description: "SSL/TLS encryption, two-factor authentication, malware protection, and enterprise compliance content filters."
+      },
+      {
+        icon: "cloud",
+        title: "Digital Sovereignty",
+        description: "Your data stored on servers in Argentina with ISO 27001 certification. GDPR compliance and local data protection laws."
+      },
+      {
+        icon: "group",
+        title: "Total Collaboration",
+        description: "Shared documents, unified calendar, joint tasks and shared folders for work teams."
+      },
+      {
+        icon: "sync",
+        title: "Multi-Device Sync",
+        description: "Access your files from any device. Files always synchronized across all your devices."
+      },
+      {
+        icon: "storage",
+        title: "Scalable Storage",
+        description: "From 250GB to 504TB per user. Capacity planning without limits to grow with your company."
+      }
+    ],
+    pricingTitle: "Storage Plans",
+    pricingSubtitle: "Annual Billing",
+    pricingDiscount: "Save up to 20%",
+    vatNote: "Reference Prices do not include VAT.",
+    plansTitle: "Our Plans",
+    plansSubtitle: "Choose the plan that best suits your needs",
+    buttonViewPlan: "View Plan",
+    recommended: "Recommended",
+    comparisonTitle: "Need a customized solution?",
+    comparisonDescription: "Our cloud architecture team can design a custom storage infrastructure tailored to your needs.",
+    comparisonButton: "Talk to an Expert"
+  }
+};
+
+const t = translations[lang];
+
+const plans = [
+  {
+    name: "Cuenta Personal",
+    subtitle: "Ideal para uso individual",
+    icon: "👤",
+    color: "blue",
+
+    features: ["1 Usuario", "Desde 250 GB hasta 8 TB", "Tráfico ilimitado", "Dispositivos ilimitados", "Todas las apps Nextcloud", "365 días papelera"],
+    href: "/servicios/cuenta-personal",
+    featured: false
+  },
+  {
+    name: "Grupo de Trabajo",
+    subtitle: "Perfecto para equipos",
+    icon: "👥",
+    color: "purple",
+    features: ["1 Administrador", "Usuarios ilimitados", "Desde 250 GB hasta 50 TB", "Tráfico ilimitado", "Sistema de conferencia", "365 días papelera", "Grupos ilimitados"],
+    href: "/servicios/grupodetrabajo",
+    featured: false
+  },
+  {
+    name: "Empresarial",
+    subtitle: "Para empresas",
+    icon: "🏢",
+    color: "indigo",
+    features: ["Servidor Dedicado", "Admin ilimitados", "Desde 1 TB hasta 24 TB", "Tráfico ilimitado", "Personalización 100%", "Sistema de conferencia", "Todas las apps"],
+    href: "/servicios/empresarial",
+    featured: true
+  },
+  {
+    name: "Empresarial+",
+    subtitle: "Máxima potencia",
+    icon: "🚀",
+    color: "violet",
+    features: ["Servidor Dedicado Premium", "Todo ilimitado", "Desde 36 TB hasta 504 TB", "Tráfico ilimitado", "Personalización 100%", "Sistema de conferencia", "Todas las apps"],
+    href: "/servicios/empresarial-2",
+    featured: false
+  }
+];
+
+const colorClasses = {
+  blue: {
+    bg: "bg-blue-100 dark:bg-blue-900/30",
+    text: "text-blue-600 dark:text-blue-400",
+    border: "border-blue-200 dark:border-blue-800",
+    button: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
+    icon: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+  },
+  purple: {
+    bg: "bg-purple-100 dark:bg-purple-900/30",
+    text: "text-purple-600 dark:text-purple-400",
+    border: "border-purple-200 dark:border-purple-800",
+    button: "bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600",
+    icon: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
+  },
+  indigo: {
+    bg: "bg-indigo-100 dark:bg-indigo-900/30",
+    text: "text-indigo-600 dark:text-indigo-400",
+    border: "border-indigo-200 dark:border-indigo-800",
+    button: "bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600",
+    icon: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+  },
+  violet: {
+    bg: "bg-violet-100 dark:bg-violet-900/30",
+    text: "text-violet-600 dark:text-violet-400",
+    border: "border-violet-200 dark:border-violet-800",
+    button: "bg-violet-600 hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600",
+    icon: "bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400"
+  }
+};
+
+const storageIcons: Record<string, string> = {
+  support_agent: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 3-1.34 3-3zm1.32 9.56c-1.26-.63-2.76-1.39-4.32-1.56v2.5c1.01.14 2.09.66 3.09 1.11l1.23-.55z",
+  person_search: "M11 7c1.65 0 3-1.35 3-3s-1.35-3-3-3-3 1.35-3 3 1.35 3 3 3zm2.94 7.89c-.51-.37-2.27-.89-4.94-.89-2.67 0-4.43.52-4.94.89-.52.36-.91 1.56-.91 2.11v1h11v-1c0-.55-.39-1.75-.91-2.11z",
+  palette: "M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 11.5 6.5 11.5z",
+  business: "M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2zm0-4h-2v2h2v-2z",
+  security: "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z",
+  cloud: "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z",
+  group: "M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z",
+  sync: "M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 11.37 20 9.86 20 8c0-4.41-3.59-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8l-1.46-1.46C4.46 12.63 4 14.14 4 16c0 4.41 3.59 8 8 8v3l4-4-4-4v3z",
+  storage: "M2 20h20v-4H2v4zm0-2h20v-4H2v4zm2-8h2v2H4v-2zm0 4h2v2H4v-2zm0-4h2v2H4v-2zm8 4h2v2h-2v-2zm0-4h2v2h-2v-2zm0-4h2v2h-2v-2zm0-4h20v4H2v-4z"
+};
+---
+
+<section class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 pt-32 pb-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Badge -->
+    <div class="mb-6 flex justify-center reveal">
+      <span class="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+        {t.badge} <span class="text-blue-400">|</span> {t.badgeSubtitle}
+      </span>
+    </div>
+
+
+    <!-- Pricing Section -->
+    <div class="mb-16 reveal">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{t.pricingTitle}</h2>
+        <p class="text-gray-600 dark:text-gray-400">{t.plansSubtitle}</p>
+      </div>
+
+      <!-- Plans Grid -->
+      <div class="grid  grid-cols-1 md:grid-cols-4 gap-15 max-w-6xl mx-auto">
+        {plans.map((plan, index) => {
+          const colors = colorClasses[plan.color as keyof typeof colorClasses];
+          return (
+            <div 
+              class={`relative group rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal ${plan.featured ? 'ring-2 ring-blue-600' : ''}`}
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              {plan.featured && (
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                  {t.recommended}
+                </div>
+              )}
+              
+              <!-- Plan Icon -->
+              <div class={`w-14 h-14 ${colors.icon} rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform group-hover:scale-110`}>
+                {plan.icon}
+              </div>
+
+              <!-- Plan Title -->
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{plan.name}</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{plan.subtitle}</p>
+
+              <!-- Features -->
+              <ul class="space-y-2 mb-6">
+                {plan.features.map(feature => (
+                  <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span class="line-clamp-1">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- CTA Button -->
+              <a
+                href={plan.href}
+                class={`block w-full text-center py-3 px-4 rounded-xl text-white font-semibold ${colors.button} transition-all shadow-md hover:shadow-lg`}
+              >
+                {t.buttonViewPlan}
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+    <!-- VAT Note -->
+    <div class="text-center mb-8 reveal">
+      <p class="text-sm text-gray-500 dark:text-gray-400 italic">
+        {t.vatNote}
+      </p>
+    </div>
+  </div>
+</section>
