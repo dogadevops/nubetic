@@ -1,0 +1,40 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import ServiciosStorage from '../../../components/ServiciosStorage.astro';
+import Footer from '../../../components/Footer.astro';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
+import AIChatbot from '../../../components/AIChatbot.astro';
+
+const lang = 'en';
+---
+
+<Layout title="Nubetic - Cloud Storage" description="Cloud storage and sync powered by Nextcloud-OVH. Security, scalability and 24/7 support." lang={lang}>
+  <Header lang={lang} />
+  
+  <main>
+    <ServiciosStorage lang={lang} />
+  </main>
+  
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} phoneNumber="+1234567890" />
+  <AIChatbot lang={lang} />
+</Layout>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>

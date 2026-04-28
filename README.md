@@ -27,6 +27,49 @@ Este proyecto es una landing page construida con **Astro v6** usando **Node.js a
 | `npm run build` | Build de producción en `./dist/` |
 | `npm run preview` | Previsualiza el build localmente |
 
+## ☁️ Vercel Deployment
+
+### Requisitos previos
+
+1. Cuenta en **Vercel**
+2. Instalar **Upstash Redis** (gratuito) desde Vercel Marketplace
+
+### Paso 1: Instalar Upstash Redis
+
+1. Ir a [Vercel Marketplace](https://vercel.com/marketplace)
+2. Buscar **Upstash Redis**
+3. Click en **Add Integration** → seleccionar tu proyecto
+4. Following the prompts to create la base de datos
+5. Copiar los valores de:
+   - `KV_REST_API_URL`
+   - `KV_REST_API_TOKEN`
+
+### Paso 2: Configurar Environment Variables
+
+En **Vercel Dashboard → Settings → Environment Variables**, agregar:
+
+| Variable | Valor | Entorno |
+|----------|------|---------|
+| `KV_REST_API_URL` | (URL de Upstash) | Production |
+| `KV_REST_API_TOKEN` | (Token de Upstash) | Production |
+| `TRWQ_API_KEY` | TuclaveSegura123! | Production |
+| `VERCEL` | `1` | Production |
+
+### Paso 3: Deploy
+
+```bash
+git add .
+git commit -m "fix: add vercel kv support"
+git push
+```
+
+El deployment automático detectará Vercel y usará KV.
+
+### Cómo funciona
+
+- **Local (desarrollo)**: guarda en `src/data/trwq-config.json`
+- **Vercel (producción)**: guarda en Upstash Redis (cifrado)
+
 ## 🐳 Docker
 
 ### Desarrollo
@@ -144,6 +187,7 @@ TRWQ_API_KEY=tu-clave-secreta-aqui
 - **i18n**: `prefixDefaultLocale: false` para URLs limpias (/servicios sin /es/)
 - **Persistencia**: Los cambios en TRWQ se guardan en `src/data/trwq-config.json`
 - **Docker**: Build multi-stage (builder → runner) para imagen optimizada
+- **Vercel**: Upstash Redis para persistencia segura en producción
 
 ## ⚠️ Notas de seguridad para producción
 

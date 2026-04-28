@@ -12,9 +12,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
     server: {
       host: '0.0.0.0',
-      allowedHosts: 'all',
+      watch: {
+        usePolling: true,
+      },
     },
-    // Env variables will be available at runtime via import.meta.env
   },
   i18n: {
     defaultLocale: 'es',

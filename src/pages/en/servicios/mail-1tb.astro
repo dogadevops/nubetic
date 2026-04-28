@@ -1,0 +1,34 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import MailPlanCard from '../../../components/MailPlanCard.astro';
+import Footer from '../../../components/Footer.astro';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
+import AIChatbot from '../../../components/AIChatbot.astro';
+import { mailPlans } from '../../../data/mailPlans.js';
+
+const plan = mailPlans.en.find(p => p.id === 'mail-1tb');
+const lang = 'en';
+---
+
+<Layout title={`Nubetic - ${plan.title}`} description={`Plan ${plan.title} - Zimbra business email.`} lang={lang}>
+  <Header lang={lang} />
+  <main>
+    <section class="pt-32 pb-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <MailPlanCard lang={lang} plan={plan} color={plan.color} />
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} phoneNumber="+1234567890" />
+  <AIChatbot lang={lang} />
+</Layout>
+
+<script>
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
